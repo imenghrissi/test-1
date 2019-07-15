@@ -14,12 +14,17 @@ import com.test.entities.Projet;
 public interface ProjetRepository extends JpaRepository<Projet, Integer> {
 	
 	
-@Query("select p from Projet p where p.ID =:ID" + "AND COALESCE(DATE_FIN_A ,DATE_FIN")
+@Query("select COALESCE(DATE_FIN_A ,DATE_FIN) from Projet p where  p.ID =:ID ")
 	List<Projet> getProjByStructure(@Param("ID") Integer ID,@Param("ID") Date DATE_FIN_A  ,@Param("ID")Date DATE_FIN);
 
 
-//@Query("select p from Projet p , STADE_PROJET s where s.cODE_STADE =:p.stadeid")
-	//List<Projet> getProjByStade(@Param("cODE_STADE")String cODE_STADE);
+@Query("select d from Projet d where d.ID like CODE_STADE")
+	List<Projet> getProjByStade(@Param("CODE_STADE") String CODE_STADE);
+
+
+
+//@Query("select P.ID from Projet AS P where P.FLAG_EN_DIFFICULTE := FLAG_EN_DIFFICULTE")
+	//List<Projet> getProjBydifficulte(@Param(value="FLAG_EN_DIFFICULTE")Integer FLAG_EN_DIFFICULTE);
 
 
 

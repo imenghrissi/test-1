@@ -59,16 +59,26 @@ public class ProjetServiceImpl implements ProjetService {
 
 
 @Override
-public List<Projet> getProjByStructure(Integer ID, Date DATE_FIN_A, Date DATE_FIN) {
+public List<Projet> getProjByStructure(Integer ID,Date DATE_FIN_A,Date DATE_FIN) {
 	// TODO Auto-generated method stub
-	return (List<Projet>)projetRepository.getProjByStructure(ID, DATE_FIN_A, DATE_FIN);
+	return (List<Projet>)projetRepository.getProjByStructure(ID,DATE_FIN_A,DATE_FIN);
 }
 
+	
+	  @Override 
+	  public List<Projet> getProjByStade(String CODE_STADE ) {
+		  // TODOAuto-generated method stub return (List<Projet>)
+	  return projetRepository.getProjByStade(CODE_STADE ); 
+	  }
+
 	/*
-	 * @Override public List<Projet> getProjByStade(String cODE_STADE) { // TODO
-	 * Auto-generated method stub return (List<Projet>)
-	 * projetRepository.getProjByStade(cODE_STADE); }
+	 * @Override public List<Projet> getProjBydifficulte(Integer FLAG_EN_DIFFICULTE)
+	 * { // TODO Auto-generated method stub return
+	 * (List<Projet>)projetRepository.getProjBydifficulte(FLAG_EN_DIFFICULTE); }
 	 */
+
+
+	 
  
 
 }

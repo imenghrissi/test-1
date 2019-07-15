@@ -45,4 +45,10 @@ public class ProjetControlleur {
 	}
 	
 
+	/*
+	 * @GetMapping("/projetdiffic/{}") public List<Projet>
+	 * getProjBydifficulte(Integer FLAG_EN_DIFFICULTE) { return
+	 * projetService.getProjBydifficulte(FLAG_EN_DIFFICULTE); }
+	 */
+	
 }

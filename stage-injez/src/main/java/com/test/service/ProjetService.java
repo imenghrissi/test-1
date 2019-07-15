@@ -15,7 +15,7 @@ public interface ProjetService {
 	public Optional<Projet> findById(Integer ID);
 	
 	public List<Projet> getProjByStructure(Integer ID,Date DATE_FIN_A,Date DATE_FIN);
-	//public List<Projet> getProjByStade(String cODE_STADE);
+	public List<Projet> getProjByStade(String CODE_STADE);
+	//public List<Projet> getProjBydifficulte(Integer FLAG_EN_DIFFICULTE);
 
 }
-	

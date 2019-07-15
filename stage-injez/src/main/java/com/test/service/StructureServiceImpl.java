@@ -20,7 +20,7 @@ public class StructureServiceImpl implements StructureService {
 	}
 
 	@Override
-	public List<Structure> getAllStade() {
+	public List<Structure> getAllStructure() {
 		// TODO Auto-generated method stub
 		return (List<Structure>)structureRepository.findAll();
 	}

@@ -6,7 +6,7 @@ import com.test.entities.Structure;
 
 public interface StructureService {
 	public Structure AddStructure(Structure structure);
-	public List<Structure>  getAllStade();
+	public List<Structure>  getAllStructure();
 	public Optional<Structure> findByStructure(Integer ID);
 
 }
