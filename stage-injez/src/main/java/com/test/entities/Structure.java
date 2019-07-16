@@ -1,7 +1,8 @@
 package com.test.entities;
 
+
 import java.util.Collection;
-import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,25 +28,19 @@ public class Structure {
     private Integer FLAG_CENTRAL; 
     private Integer FLAG_SAISIE_PROG_CENTRAL; 
     private String CODE_ZONE;
+
+    
+    @OneToMany(mappedBy = "structuresid", cascade = CascadeType.ALL)
+    private Collection<Projet> projets;
     
     
     
-    @OneToMany(mappedBy = "structID", cascade = CascadeType.ALL)
-    private Collection<Projet> projects;
     
-    
-    
-	/*
-	 * @OneToMany(mappedBy="structure") private Collection<Projet> projet;
-	 */
-	
-	
-	
-	public Collection<Projet> getProjects() {
-		return projects;
+	public Collection<Projet> getProjets() {
+		return projets;
 	}
-	public void setProjects(Set<Projet> projects) {
-		this.projects = projects;
+	public void setProjets(Collection<Projet> projets) {
+		this.projets = projets;
 	}
 	public Structure() {
 		super();

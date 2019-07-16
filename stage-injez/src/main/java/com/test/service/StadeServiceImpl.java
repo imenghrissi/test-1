@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.test.dao.StadeRepository;
 
 import com.test.entities.STADE_PROJET;
-@Service
+@Service("StadeService")
 public class StadeServiceImpl implements StadeService {
 @Autowired
 private StadeRepository stadeRepository;

@@ -2,12 +2,13 @@ package com.test.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 
 @Entity
@@ -15,7 +16,7 @@ public class Projet  {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    
-	private Integer ID;
+	private Integer id;
     
 	private String REFERENCE_PROJET ;
     private String CODE_STADE;
@@ -181,40 +182,38 @@ public class Projet  {
 	private Integer FLAG_EN_DIFFICULTE;
     
 	/*******************Structure**********************************************/
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn
+	    //(name = "structuresid", nullable = false)
+	    private Structure structuresid;
+	
+	 
+		public Structure getStructuresid() {
+			return structuresid;
+		}
+		public void setStructuresid(Structure structuresid) {
+			this.structuresid = structuresid;
+		}
 
+		/*******************stadeprojet**********************************************/
+	 @ManyToOne(fetch = FetchType.LAZY)
+	 @JoinColumn
+	    //(name = "stadeid", nullable = false)
+	    private STADE_PROJET stadeid;
 	
-	@ManyToOne
-    @JoinColumn(name = "structID")
-    private Structure structID;
-	
-	
-	
-    public Structure getStructID() {
-		return structID;
-	}
-	public void setStructID(Structure structID) {
-		this.structID = structID;
-	}
-	
-	/*******************sTAdePROJET**********************************************/
-	@ManyToOne
-    @JoinColumn(name = "stadeID")
-    private STADE_PROJET stadeID;
-	
-	
-	
-	public STADE_PROJET getStadeID() {
-		return stadeID;
-	}
-	public void setStadeID(STADE_PROJET stadeID) {
-		this.stadeID = stadeID;
-	}
+
+	 		public STADE_PROJET getStadeid() {
+			return stadeid;
+		}
+		public void setStadeid(STADE_PROJET stadeid) {
+			this.stadeid = stadeid;
+		}
 	//constructor
     public Projet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Projet( Integer ID, String REFERENCE_PROJET,
+	public Projet( Integer id, String REFERENCE_PROJET,
 			 String CODE_STADE,  String CODE_TYPE_PRJ,
 			 String INTITULE_PRJ, String DESC_PRJ, Date DATE_DEB,
 			Date DATE_FIN, Date DATE_FIN_A, String REF_BUD,
@@ -252,7 +251,7 @@ public class Projet  {
 			 String OBS_AR, Integer FLAG_DECISION,
 			 Integer F_DELETE,  Integer FLAG_EN_DIFFICULTE) {
 		super();
-		this.ID = ID;
+		this.id = id;
 		this.REFERENCE_PROJET = REFERENCE_PROJET;
 		this.CODE_STADE = CODE_STADE;
 		this.CODE_TYPE_PRJ = CODE_TYPE_PRJ;
@@ -339,14 +338,13 @@ public class Projet  {
     
     
 
-	public Integer getID() {
-		return ID;
-	}
 
-	public void setID(Integer Id) {
-		ID = Id;
+	public Integer getId() {
+		return id;
 	}
-
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getREFERENCE_PROJET() {
 		return REFERENCE_PROJET;
 	}
@@ -969,21 +967,9 @@ public class Projet  {
 
 	public void setFLAG_EN_DIFFICULTE(Integer fLAG_EN_DIFFICULTE) {
 		FLAG_EN_DIFFICULTE = fLAG_EN_DIFFICULTE;
-	}
-	/*
-	 * public Structure getStructure() { return structure; } public void
-	 * setStructure(Structure structure) { this.structure = structure; } public
-	 * STADE_PROJET getStade_projet() { return stade_projet; } public void
-	 * setStade_projet(STADE_PROJET stade_projet) { this.stade_projet =
-	 * stade_projet; }
-	 */
+		}
 
-	
-	
-	
-
-
-	
+		
     
 
 }

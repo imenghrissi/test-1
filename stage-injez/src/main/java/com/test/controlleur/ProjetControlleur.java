@@ -1,14 +1,15 @@
 package com.test.controlleur;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.entities.Projet;
@@ -24,31 +25,42 @@ public class ProjetControlleur {
 	@Autowired
     private ProjetService projetService;
 
-	@RequestMapping(value="/addprojet", method=RequestMethod.POST)
+	/*
+	 * @Autowired //@Qualifier("projetService") public void
+	 * setProjetService(ProjetService projetService){
+	 * this.projetService=projetService; }
+	 */
+	@RequestMapping(value="/Addprojet", method=RequestMethod.POST)
 	public Projet  saveProjet(@RequestBody Projet projet) {
 		return projetService.AddProjet(projet);
 		
 	}
-	@RequestMapping(value="/listprojet", method=RequestMethod.GET)
+	@RequestMapping(value="/Listprojet", method=RequestMethod.GET)
 	public List<Projet> listProjet() {
 		return projetService.getAllProjet();	
 		}
 
-	@RequestMapping(value="/modifprojet", method=RequestMethod.POST)
+	@RequestMapping(value="/Modifprojet", method=RequestMethod.POST)
 	public Projet modifProjet(Projet projet) {
-		return projetService.modifProjet(projet);
+		return projetService.ModifProjet(projet);
 	}
 	
-	@GetMapping("/projets/{id}")
-	public Optional<Projet> getProjetById(Integer Id) {
-		return projetService.findById(Id);
+	@RequestMapping("/Project/{id}")
+	public Optional<Projet> findById(Integer id) {
+		return projetService.findById(id);
+	}
+	
+	@RequestMapping("/ProjByStructure/{id}")
+	public List<Projet> getProjByStructureid(Integer structuresid_id) {
+		return projetService.getProjByStructure(structuresid_id);
 	}
 	
 
-	/*
-	 * @GetMapping("/projetdiffic/{}") public List<Projet>
-	 * getProjBydifficulte(Integer FLAG_EN_DIFFICULTE) { return
-	 * projetService.getProjBydifficulte(FLAG_EN_DIFFICULTE); }
-	 */
+	
+	@RequestMapping("/projetdiffic/{}")
+	  public List<Projet>getProjBydifficulte(Integer FLAG_EN_DIFFICULTE) {
+		  return projetService.getProjBydifficulte(FLAG_EN_DIFFICULTE); 
+		  }
+	 
 	
 }

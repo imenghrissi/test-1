@@ -24,28 +24,21 @@ public class STADE_PROJET {
 	private Integer FLAG_EN_CONTINUATION;
 	private Integer FLAG_EN_DIFFICULTE;
 	private String DES_AR;
-	
-	
-	
 
-	
-	@OneToMany(mappedBy = "stadeID", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "stadeid", cascade = CascadeType.ALL)
     private Collection<Projet> projets;
 	
 	
 	
-	
-	
-	
-	public Collection<Projet> getProjects() {
+		public Collection<Projet> getProjets() {
 		return projets;
 	}
 
-	public void setProjects(Collection<Projet> projets) {
+	public void setProjets(Collection<Projet> projets) {
 		this.projets = projets;
 	}
 
-	public STADE_PROJET() {
+		public STADE_PROJET() {
 		super();
 	}
 	

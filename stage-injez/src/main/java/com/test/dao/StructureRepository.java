@@ -10,6 +10,6 @@ public interface StructureRepository extends JpaRepository<Structure, Integer> {
 
 	
 
-	//List<Structure> getProjByStructure(Integer iD);
+
 
 }

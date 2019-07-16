@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.dao.StructureRepository;
 import com.test.entities.Structure;
-@Service
+@Service("StructureService")
 public class StructureServiceImpl implements StructureService {
 	
 	@Autowired
