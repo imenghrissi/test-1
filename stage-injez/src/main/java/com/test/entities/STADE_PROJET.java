@@ -5,10 +5,13 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -17,87 +20,108 @@ public class STADE_PROJET {
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "CODE_STADE", updatable = false, nullable = false)
+	@Column(name = "Code_Stade", updatable = false, nullable = false)
 	
-	private String CODE_STADE;
-	private String DES;
-	private Integer FLAG_EN_CONTINUATION;
-	private Integer FLAG_EN_DIFFICULTE;
-	private String DES_AR;
+	private String Code_Stade;
+	private String Des;
+	private Integer Flag_En_Continuation;
+	private Integer Flag_En_Difficulte;
+	private String Des_Ar;
 
-    @OneToMany(mappedBy = "stadeid", cascade = CascadeType.ALL)
-    private Collection<Projet> projets;
+    @OneToMany(mappedBy = "CodeStade", cascade = CascadeType.ALL)
+    private Collection<Projet> projects;
 	
 	
-	
-		public Collection<Projet> getProjets() {
-		return projets;
+    @JsonIgnore
+    public Collection<Projet> getProjects() {
+		return projects;
 	}
 
-	public void setProjets(Collection<Projet> projets) {
-		this.projets = projets;
+	public void setProjects(Collection<Projet> projects) {
+		this.projects = projects;
 	}
 
-		public STADE_PROJET() {
+	/*fk=activite,stadeprojet*/
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="CodeStade",cascade = CascadeType.ALL)
+	  private Collection<Activite> activite;
+
+	@JsonIgnore
+	public Collection<Activite> getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Collection<Activite> activite) {
+		this.activite = activite;
+	}
+
+
+
+	public STADE_PROJET() {
 		super();
 	}
-	
+    
+    
+
 	/**
-	 * @param cODE_STADE
-	 * @param dES
-	 * @param fLAG_EN_CONTINUATION
-	 * @param fLAG_EN_DIFFICULTE
-	 * @param dES_AR
+	 * @param code_Stade
+	 * @param des
+	 * @param flag_En_Continuation
+	 * @param flag_En_Difficulte
+	 * @param des_Ar
 	 */
-	public STADE_PROJET(String cODE_STADE, String dES, Integer fLAG_EN_CONTINUATION, Integer fLAG_EN_DIFFICULTE,
-			String dES_AR) {
+	public STADE_PROJET(String code_Stade, String des, Integer flag_En_Continuation, Integer flag_En_Difficulte,
+			String des_Ar) {
 		super();
-		CODE_STADE = cODE_STADE;
-		DES = dES;
-		FLAG_EN_CONTINUATION = fLAG_EN_CONTINUATION;
-		FLAG_EN_DIFFICULTE = fLAG_EN_DIFFICULTE;
-		DES_AR = dES_AR;
+		Code_Stade = code_Stade;
+		Des = des;
+		Flag_En_Continuation = flag_En_Continuation;
+		Flag_En_Difficulte = flag_En_Difficulte;
+		Des_Ar = des_Ar;
 	}
 
-	public String getCODE_STADE() {
-		return CODE_STADE;
+
+
+	public String getCode_Stade() {
+		return Code_Stade;
 	}
 
-	public void setCODE_STADE(String cODE_STADE) {
-		CODE_STADE = cODE_STADE;
+	public void setCode_Stade(String code_Stade) {
+		Code_Stade = code_Stade;
 	}
 
-	public String getDES() {
-		return DES;
+	public String getDes() {
+		return Des;
 	}
 
-	public void setDES(String dES) {
-		DES = dES;
+	public void setDes(String des) {
+		Des = des;
 	}
 
-	public Integer getFLAG_EN_CONTINUATION() {
-		return FLAG_EN_CONTINUATION;
+	public Integer getFlag_En_Continuation() {
+		return Flag_En_Continuation;
 	}
 
-	public void setFLAG_EN_CONTINUATION(Integer fLAG_EN_CONTINUATION) {
-		FLAG_EN_CONTINUATION = fLAG_EN_CONTINUATION;
+	public void setFlag_En_Continuation(Integer flag_En_Continuation) {
+		Flag_En_Continuation = flag_En_Continuation;
 	}
 
-	public Integer getFLAG_EN_DIFFICULTE() {
-		return FLAG_EN_DIFFICULTE;
+	public Integer getFlag_En_Difficulte() {
+		return Flag_En_Difficulte;
 	}
 
-	public void setFLAG_EN_DIFFICULTE(Integer fLAG_EN_DIFFICULTE) {
-		FLAG_EN_DIFFICULTE = fLAG_EN_DIFFICULTE;
+	public void setFlag_En_Difficulte(Integer flag_En_Difficulte) {
+		Flag_En_Difficulte = flag_En_Difficulte;
 	}
 
-	public String getDES_AR() {
-		return DES_AR;
+	public String getDes_Ar() {
+		return Des_Ar;
 	}
 
-	public void setDES_AR(String dES_AR) {
-		DES_AR = dES_AR;
+	public void setDes_Ar(String des_Ar) {
+		Des_Ar = des_Ar;
 	}
 	
+    
+		
 	
 }

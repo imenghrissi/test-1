@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.test.entities.Structure;
 
 import com.test.service.StructureService;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api")
+@RequestMapping("/")
 
 @Controller
 @ResponseBody
@@ -37,9 +35,9 @@ public class StructureControlleur {
 
 
 	
-	@GetMapping("/structur/{id}")
-	public Optional<Structure> findByStructure(Integer ID) {
-		return structureService.findByStructure(ID);
+	@GetMapping("/structur/{Id_Structure}")
+	public Optional<Structure> findByStructure(Integer Id_Structure) {
+		return structureService.findByStructure(Id_Structure);
 	}
 
 }

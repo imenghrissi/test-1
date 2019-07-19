@@ -10,6 +10,6 @@ import com.test.entities.Structure;
 public interface StructureService {
 	public Structure AddStructure(Structure structure);
 	public List<Structure>  getAllStructure();
-	public Optional<Structure> findByStructure(Integer ID);
+	public Optional<Structure> findByStructure(Integer Id_Structure);
 
 }

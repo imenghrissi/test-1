@@ -26,9 +26,9 @@ private StadeRepository stadeRepository;
 	}
 
 	@Override
-	public Optional<STADE_PROJET> findBycode(String CODE_STADE) {
+	public Optional<STADE_PROJET> findBycode(String Code_Stade) {
 		// TODO Auto-generated method stub
-		return (Optional<STADE_PROJET>) stadeRepository.findById(CODE_STADE);
+		return (Optional<STADE_PROJET>)stadeRepository.findById(Code_Stade);
 	}
 
 }

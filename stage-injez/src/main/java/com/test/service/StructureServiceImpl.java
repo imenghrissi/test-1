@@ -26,9 +26,9 @@ public class StructureServiceImpl implements StructureService {
 	}
 
 	@Override
-	public Optional<Structure> findByStructure(Integer ID) {
+	public Optional<Structure> findByStructure(Integer Id_Structure) {
 		// TODO Auto-generated method stub
-		return (Optional<Structure>)structureRepository.findById(ID);
+		return (Optional<Structure>)structureRepository.findById(Id_Structure);
 	}
 
 }

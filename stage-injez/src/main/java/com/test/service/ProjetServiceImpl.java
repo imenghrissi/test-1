@@ -36,32 +36,32 @@ public class ProjetServiceImpl implements ProjetService {
 
   //@GetMapping("/projets/{Id}")
 	@Override
-	 public Optional<Projet> findById(@PathVariable Integer id) {
+	 public Optional<Projet> findById(@PathVariable Integer Id_projet) {
 		 System.out.println("Get project par id...");
 		// Optional<Projet> prj = projetRepository.findById(id);
-		 return (Optional<Projet>) projetRepository.findById(id);
+		 return (Optional<Projet>) projetRepository.findById(Id_projet);
 	  
 	 
 	 }
 
 	
 	  @Override 
-	  public List<Projet> getProjByStade(String CODE_STADE ) {
+	  public List<Projet> getProjByStade(String Code_Stade ) {
 		  // TODOAuto-generated method stub return (List<Projet>)
-	  return projetRepository.getProjByStade(CODE_STADE ); 
+	  return (List<Projet>)projetRepository.getProjByStade(Code_Stade); 
 	  }
 
 	  @Override 
-    	public List<Projet> getProjByStructure(Integer structuresid_id) {
+    	public List<Projet> getProjByStructure(Integer Id_Structure) {
 		
-		return  projetRepository.getProjByStructureid(structuresid_id);
+		return  projetRepository.getProjByStructureid(Id_Structure);
 		}
 
 
 	  @Override
-	  public List<Projet> getProjBydifficulte(Integer FLAG_EN_DIFFICULTE){
+	  public List<Projet> getProjBydifficulte(Integer Flag_En_Difficulte){
 		  // TODO Auto-generated method stub 
-		  return(List<Projet>)projetRepository.getProjBydifficulte(FLAG_EN_DIFFICULTE);
+		  return(List<Projet>)projetRepository.getProjBydifficulte(Flag_En_Difficulte);
 		  }
 	 
 

@@ -1,6 +1,12 @@
 package com.test.entities;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+//import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,967 +14,1090 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+//import org.hibernate.FetchMode;
+//import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 
 
 @Entity
-public class Projet  {
+public class Projet implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "Id_projet", updatable = false, nullable = false)
+	private Integer Id_projet;
+    
+	private String Reference_Projet ;
+    //private String CODE_STADE;
+    private String Code_Type_Prj;
+    private String Intitule_Prj;
+    private String Desc_Prj;
+    
+    
+	private Date Date_Deb;
+	private Date Date_Fin ;
+	private Date Date_Fin_A;
+	
+	private String Ref_Bud;
+	
+	private String Maitre_Oeuvre ;
+	
+	
+	private String Maitre_Ouvrage ;
+	
+	
+	private Integer Tri;
+	
+	
+	private Integer Unite_Po_Phy ;
+	
+	
+	private Integer Unite_Po_Fin;
+	
+	private Integer Unite_S_Fin;
+	
+	
+	private Integer Unite_S_Phy;
+	
+	
+	private Integer Unite_Pm;
+	
+	private String Obs;
+	
+	
+	private Integer Niv_Zone;
+	
+	
+	private Integer  Flag_Planif_Phy ;
+	
+	
+	private Integer Flag_Planif_Fin;
+	
+	private Integer Niv_Plan_Fin_Init;
+	
+	private Integer Niv_Plan_Phy_Init ;
+	
+	private Integer Niv_Po_Fin ;
+	
+	private Integer Niv_Po_Phy ;
+	
+	private Integer Niv_Suiv_Fin ;
+	
+	private Integer Niv_Suiv_Phy ;
+	
+	private Integer Niv_Pdl_Fin;
+	
+	private Integer Niv_Pdl_Phy ;
+	
+	private Integer Unite_Pdl_Phy ;
+	
+	private Integer Unite_Pdl_Fin ;
+	
+	private Integer Unite_Init_Phy ;
+	
+	private Integer Unite_Init_Fin;
+	
+	private Date Date_Act_Mt_Tre;
+	private Date Date_Act_Mt_Tot ;
+	
+	private String Code_Dev ;
+
+	private Integer Taux_Ref;
+
+	private Integer  Flag_Ppinit ;
+    
+	private Integer Flag_Pppdp;
+    
+	private Integer Flag_Pppta;
    
-	private Integer id;
-    
-	private String REFERENCE_PROJET ;
-    private String CODE_STADE;
-    private String CODE_TYPE_PRJ;
-    private String INTITULE_PRJ;
-    private String DESC_PRJ;
-    
-    
-	private Date DATE_DEB;
-	private Date DATE_FIN ;
-	private Date DATE_FIN_A;
-	
-	private String REF_BUD;
-	
-	private String MAITRE_OEUVRE ;
-	
-	
-	private String MAITRE_OUVRAGE ;
-	
-	
-	private Integer TRI;
-	
-	
-	private Integer UNITE_PO_PHY ;
-	
-	
-	private Integer UNITE_PO_FIN;
-	
-	private Integer UNITE_S_FIN;
-	
-	
-	private Integer UNITE_S_PHY;
-	
-	
-	private Integer UNITE_PM;
-	
-	private String OBS;
-	
-	
-	private Integer NIV_ZONE;
-	
-	
-	private Integer  FLAG_PLANIF_PHY ;
-	
-	
-	private Integer FLAG_PLANIF_FIN;
-	
-	private Integer NIV_PLAN_FIN_INIT;
-	
-	private Integer NIV_PLAN_PHY_INIT ;
-	
-	private Integer NIV_PO_FIN ;
-	
-	private Integer NIV_PO_PHY ;
-	
-	private Integer NIV_SUIV_FIN ;
-	
-	private Integer NIV_SUIV_PHY ;
-	
-	private Integer NIV_PDL_FIN;
-	
-	private Integer NIV_PDL_PHY ;
-	
-	private Integer UNITE_PDL_PHY ;
-	
-	private Integer UNITE_PDL_FIN ;
-	
-	private Integer UNITE_INIT_PHY ;
-	
-	private Integer UNITE_INIT_FIN;
-	
-	private Date DATE_ACT_MT_TRE;
-	private Date DATE_ACT_MT_TOT ;
-	
-	private String CODE_DEV ;
-
-	private Integer TAUX_REF;
-
-	private Integer  FLAG_PPINIT ;
-    
-	private Integer FLAG_PPPDP;
-    
-	private Integer FLAG_PPPTA;
-   
-	private Integer FLAG_SP ;
+	private Integer Flag_Sp ;
     
 
-	private Integer FLAG_PFINIT ;
+	private Integer Flag_Pfinit ;
     
  
-	private Integer FLAG_PFPDP ;
+	private Integer Flag_Pfpdp ;
 
-   	private Integer FLAG_PFPTA ;
+   	private Integer Flag_Pfpta ;
     
-	private Integer FLAG_SAF;
+	private Integer Flag_Saf;
     
-	private String REFERENCE_PROGRAMME;
+	private String Reference_Programme;
     
-	private Integer NIVEAU ;
+	private Integer Niveau ;
     
-	private Integer UNITE_PLANIF_AO ;
+	private Integer Unite_Planif_Ao ;
     
-	private Integer UNITE_PLANIF_MARCHE;
+	private Integer Unite_Planif_Marche;
     
-	private Integer FLAG_PLANIF_AO ;
+	private Integer Flag_Planif_Ao ;
 
-	private Integer FLAG_PLANIF_MARCHE;
+	private Integer Flag_Planif_Marche;
     
-	private Integer ID_STRUCTURE;
+	//private Integer ID_STRUCTURE;
 
-	private Integer TRII;
+	private Integer Trii;
     
-	private Integer UNITE_PLANIF_ACT_INDV ;
-    private Integer FLAG_PLANIF_ACT_INDV ;
+	private Integer Unite_Planif_Act_Indv ;
+    private Integer Flag_Planif_Act_Indv ;
     
     
-	private Date DATE_ENV_DELEG;
+	private Date Date_Env_Deleg;
 	
-	private String MAITRE_OUVRAGE_DELEG ;
+	private String Maitre_Ouvrage_Deleg ;
 	
-	private Integer FLAG_MSTR ;
+	private Integer Flag_Mstr ;
 	
-	private Integer FLAG_DELEG ;
+	private Integer Flag_Deleg ;
 
-	private String INTITULE_PROJET_AR;
+	private String Intitule_Projet_Ar;
 
 	
-	private String DESC_PRJ_AR;
+	private String Desc_Prj_Ar;
 	
 
-	private String MAITRE_OEUVRE_AR;
+	private String Maitre_Oeuvrage_Ar;
 	
-	private String MAITRE_OUVRAGE_AR;
+	private String Maitre_Ouvrage_Ar;
 
-	private String REF_BUDJET_AR ;
+	private String Ref_Budjet_Ar ;
 
-	private Integer COUT_PRJ ;
+	private Integer Cout_Prj ;
 	
-	private Integer COUT_PRJ_A;
+	private Integer Cout_Prj_A;
 	
-	private Integer COUT_TR;
+	private Integer Cout_Tr;
 	
-	private Integer COUT_TR_A;
+	private Integer Cout_Tr_A;
 	
-	private Integer COUT_PRJ_ML ;
+	private Integer Cout_Prj_Ml ;
 	
-	private Integer COUT_PRJ_ML_A;
+	private Integer Cout_Prj_Ml_A;
 	
-	private Date DATE_SAISIE;
+	private Date Date_Saisie;
 	
-	private Date DATE_MAJ ;
+	private Date Date_Maj ;
 	
-	private String SOUS_SECTEUR;
+	private String Sous_Secteur;
 	
-	private Integer ID_STR_SECTEUR ;
+	private Integer Id_Str_Secteur ;
 	
-	private String OBS_AR;
+	private String Obs_Ar;
 	
-	private Integer  FLAG_DECISION;
+	private Integer  Flag_Decision;
     
-	private Integer F_DELETE;
+	private Integer F_Delete;
     
-	private Integer FLAG_EN_DIFFICULTE;
+	private Integer Flag_En_Difficulte;
     
 	/*******************Structure**********************************************/
 	 @ManyToOne(fetch = FetchType.LAZY)
-	 @JoinColumn
-	    //(name = "structuresid", nullable = false)
-	    private Structure structuresid;
+	 @JoinColumn(name="Id_Structure")
+	    private Structure Id_Structure;
 	
 	 
-		public Structure getStructuresid() {
-			return structuresid;
-		}
-		public void setStructuresid(Structure structuresid) {
-			this.structuresid = structuresid;
-		}
+	 @JsonIgnore
+		public Structure getId_Structure() {
+		return Id_Structure;
+	}
+
+	public void setId_Structure(Structure id_Structure) {
+		Id_Structure = id_Structure;
+	}
 
 		/*******************stadeprojet**********************************************/
 	 @ManyToOne(fetch = FetchType.LAZY)
-	 @JoinColumn
-	    //(name = "stadeid", nullable = false)
-	    private STADE_PROJET stadeid;
+	 @JoinColumn(name="CodeStade")
+	   private STADE_PROJET CodeStade;
+
+	 @JsonIgnore
+	public STADE_PROJET getCodeStade() {
+			return CodeStade;
+		}
+
+		public void setCodeStade(STADE_PROJET codeStade) {
+			CodeStade = codeStade;
+		}
+		
+	/*****CONSTRAINT "FK_PROJET___PJT_ACTIVITE" FOREIGN KEY ("Id_projet")*////////
+		@LazyCollection(LazyCollectionOption.FALSE)
+		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
+	   private Collection<Activite> activite;
+		
+		@JsonIgnore
+		public Collection<Activite> getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Collection<Activite> activite) {
+		this.activite = activite;
+	}
+
+
+		/*
+	 * 
+	 */
 	
 
-	 		public STADE_PROJET getStadeid() {
-			return stadeid;
+	  
+	  
+
+	 
+
+
+
+		/*		
+ * 
+ * 
+ */
+		@LazyCollection(LazyCollectionOption.FALSE)
+		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
+		   private Collection<FE> fe;
+		
+		@JsonIgnore	
+		public Collection<FE> getFe() {
+			return fe;
 		}
-		public void setStadeid(STADE_PROJET stadeid) {
-			this.stadeid = stadeid;
+
+		public void setFe(Collection<FE> fe) {
+			this.fe = fe;
 		}
+
+		/*		
+ * 
+ * 
+ */
+		@LazyCollection(LazyCollectionOption.FALSE)
+		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
+		   private Collection<ZONE> zone;
+		
+		@JsonIgnore
+	public Collection<ZONE> getZone() {
+			return zone;
+		}
+
+		public void setZone(Collection<ZONE> zone) {
+			this.zone = zone;
+		}
+
 	//constructor
     public Projet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Projet( Integer id, String REFERENCE_PROJET,
-			 String CODE_STADE,  String CODE_TYPE_PRJ,
-			 String INTITULE_PRJ, String DESC_PRJ, Date DATE_DEB,
-			Date DATE_FIN, Date DATE_FIN_A, String REF_BUD,
-			 String MAITRE_OEUVRE,  String MAITRE_OUVRAGE,
-			Integer TRI, Integer UNITE_PO_PHY,
-			Integer UNITE_PO_FIN,  Integer UNITE_S_FIN,
-			 Integer UNITE_S_PHY,  Integer UNITE_PM,
-			 String OBS, Integer NIV_ZONE,
-			Integer FLAG_PLANIF_PHY,  Integer FLAG_PLANIF_FIN,
-			 Integer NIV_PLAN_FIN_INIT,  Integer NIV_PLAN_PHY_INIT,
-			 Integer NIV_PO_FIN,  Integer NIV_PO_PHY,
-			 Integer NIV_SUIV_FIN,  Integer NIV_SUIV_PHY,
-			 Integer NIV_PDL_FIN,  Integer NIV_PDL_PHY,
-			 Integer UNITE_PDL_PHY,  Integer UNITE_PDL_FIN,
-			 Integer UNITE_INIT_PHY,  Integer UNITE_INIT_FIN,
-			Date DATE_ACT_MT_TRE, Date DATE_ACT_MT_TOT, String CODE_DEV,
-			 Integer TAUX_REF,  Integer FLAG_PPINIT,
-			 Integer FLAG_PPPDP,Integer FLAG_PPPTA,
-			 Integer FLAG_SP,  Integer FLAG_PFINIT,
-			 Integer FLAG_PFPDP, Integer FLAG_PFPTA,
-			 Integer FLAG_SAF,  String REFERENCE_PROGRAMME,
-			 Integer NIVEAU,  Integer UNITE_PLANIF_AO,
-			 Integer UNITE_PLANIF_MARCHE,  Integer FLAG_PLANIF_AO,
-			 Integer FLAG_PLANIF_MARCHE, Integer ID_STRUCTURE,
-			 Integer TRII,  Integer UNITE_PLANIF_ACT_INDV,
-			 Integer FLAG_PLANIF_ACT_INDV, Date DATE_ENV_DELEG,
-			 String MAITRE_OUVRAGE_DELEG,  Integer FLAG_MSTR,
-			 Integer FLAG_DELEG, String INTITULE_PROJET_AR,
-			 String DESC_PRJ_AR,String MAITRE_OEUVRE_AR,
-			 String MAITRE_OUVRAGE_AR,String REF_BUDJET_AR,
-		    Integer COUT_PRJ,  Integer COUT_PRJ_A,
-			Integer COUT_TR,  Integer COUT_TR_A,
-			 Integer COUT_PRJ_ML,  Integer COUT_PRJ_ML_A, Date DATE_SAISIE,
-			Date DATE_MAJ,  String SOUS_SECTEUR,  Integer ID_STR_SECTEUR,
-			 String OBS_AR, Integer FLAG_DECISION,
-			 Integer F_DELETE,  Integer FLAG_EN_DIFFICULTE) {
-		super();
-		this.id = id;
-		this.REFERENCE_PROJET = REFERENCE_PROJET;
-		this.CODE_STADE = CODE_STADE;
-		this.CODE_TYPE_PRJ = CODE_TYPE_PRJ;
-		this.INTITULE_PRJ = INTITULE_PRJ;
-		this.DESC_PRJ = DESC_PRJ;
-		this.DATE_DEB = DATE_DEB;
-		this.DATE_FIN = DATE_FIN;
-		this.DATE_FIN_A = DATE_FIN_A;
-		this.REF_BUD = REF_BUD;
-		this.MAITRE_OEUVRE = MAITRE_OEUVRE;
-		this.MAITRE_OUVRAGE = MAITRE_OUVRAGE;
-		this.TRI = TRI;
-		this.UNITE_PO_PHY = UNITE_PO_PHY;
-		this.UNITE_PO_FIN = UNITE_PO_FIN;
-		this.UNITE_S_FIN = UNITE_S_FIN;
-		this.UNITE_S_PHY = UNITE_S_PHY;
-		this.UNITE_PM = UNITE_PM;
-		this.OBS = OBS;
-		this.NIV_ZONE = NIV_ZONE;
-		this.FLAG_PLANIF_PHY = FLAG_PLANIF_PHY;
-		this.FLAG_PLANIF_FIN = FLAG_PLANIF_FIN;
-		this.NIV_PLAN_FIN_INIT = NIV_PLAN_FIN_INIT;
-		this.NIV_PLAN_PHY_INIT = NIV_PLAN_PHY_INIT;
-		this.NIV_PO_FIN = NIV_PO_FIN;
-		this.NIV_PO_PHY = NIV_PO_PHY;
-		this.NIV_SUIV_FIN = NIV_SUIV_FIN;
-		this.NIV_SUIV_PHY = NIV_SUIV_PHY;
-		this.NIV_PDL_FIN = NIV_PDL_FIN;
-		this.NIV_PDL_PHY = NIV_PDL_PHY;
-		this.UNITE_PDL_PHY = UNITE_PDL_PHY;
-		this.UNITE_PDL_FIN = UNITE_PDL_FIN;
-		this.UNITE_INIT_PHY = UNITE_INIT_PHY;
-		this.UNITE_INIT_FIN = UNITE_INIT_FIN;
-		this.DATE_ACT_MT_TRE = DATE_ACT_MT_TRE;
-		this.DATE_ACT_MT_TOT = DATE_ACT_MT_TOT;
-		this.CODE_DEV = CODE_DEV;
-		this.TAUX_REF = TAUX_REF;
-		this.FLAG_PPINIT = FLAG_PPINIT;
-		this.FLAG_PPPDP = FLAG_PPPDP;
-		this.FLAG_PPPTA = FLAG_PPPTA;
-		this.FLAG_SP = FLAG_SP;
-		this.FLAG_PFINIT = FLAG_PFINIT;
-		this.FLAG_PFPDP = FLAG_PFPDP;
-		this.FLAG_PFPTA = FLAG_PFPTA;
-		this.FLAG_SAF = FLAG_SAF;
-		this.REFERENCE_PROGRAMME = REFERENCE_PROGRAMME;
-		this.NIVEAU = NIVEAU;
-		this.UNITE_PLANIF_AO = UNITE_PLANIF_AO;
-		this.UNITE_PLANIF_MARCHE = UNITE_PLANIF_MARCHE;
-		this.FLAG_PLANIF_AO = FLAG_PLANIF_AO;
-		this.FLAG_PLANIF_MARCHE = FLAG_PLANIF_MARCHE;
-		this.ID_STRUCTURE = ID_STRUCTURE;
-		this.TRII = TRII;
-		this.UNITE_PLANIF_ACT_INDV = UNITE_PLANIF_ACT_INDV;
-		this.FLAG_PLANIF_ACT_INDV = FLAG_PLANIF_ACT_INDV;
-		this.DATE_ENV_DELEG = DATE_ENV_DELEG;
-		this.MAITRE_OUVRAGE_DELEG = MAITRE_OUVRAGE_DELEG;
-		this.FLAG_MSTR = FLAG_MSTR;
-		this.FLAG_DELEG = FLAG_DELEG;
-		this.INTITULE_PROJET_AR = INTITULE_PROJET_AR;
-		this.DESC_PRJ_AR = DESC_PRJ_AR;
-		this.MAITRE_OEUVRE_AR = MAITRE_OEUVRE_AR;
-		this.MAITRE_OUVRAGE_AR = MAITRE_OUVRAGE_AR;
-		this.REF_BUDJET_AR = REF_BUDJET_AR;
-		this.COUT_PRJ = COUT_PRJ;
-		this.COUT_PRJ_A = COUT_PRJ_A;
-		this.COUT_TR = COUT_TR;
-		this.COUT_TR_A = COUT_TR_A;
-		this.COUT_PRJ_ML = COUT_PRJ_ML;
-		this.COUT_PRJ_ML_A = COUT_PRJ_ML_A;
-		this.DATE_SAISIE = DATE_SAISIE;
-		this.DATE_MAJ = DATE_MAJ;
-		this.SOUS_SECTEUR = SOUS_SECTEUR;
-		this.ID_STR_SECTEUR = ID_STR_SECTEUR;
-		this.OBS_AR = OBS_AR;
-		this.FLAG_DECISION = FLAG_DECISION;
-		this.F_DELETE = F_DELETE;
-		this.FLAG_EN_DIFFICULTE = FLAG_EN_DIFFICULTE;
-	}
-
-    
-    
-    
-    
-    
-
-
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getREFERENCE_PROJET() {
-		return REFERENCE_PROJET;
-	}
-
-	public void setREFERENCE_PROJET(String rEFERENCE_PROJET) {
-		REFERENCE_PROJET = rEFERENCE_PROJET;
-	}
-
-	public String getCODE_STADE() {
-		return CODE_STADE;
-	}
-
-	public void setCODE_STADE(String cODE_STADE) {
-		CODE_STADE = cODE_STADE;
-	}
-
-	public String getCODE_TYPE_PRJ() {
-		return CODE_TYPE_PRJ;
-	}
-
-	public void setCODE_TYPE_PRJ(String cODE_TYPE_PRJ) {
-		CODE_TYPE_PRJ = cODE_TYPE_PRJ;
-	}
-
-	public String getINTITULE_PRJ() {
-		return INTITULE_PRJ;
-	}
-
-	public void setINTITULE_PRJ(String iNTITULE_PRJ) {
-		INTITULE_PRJ = iNTITULE_PRJ;
-	}
-
-	public String getDESC_PRJ() {
-		return DESC_PRJ;
-	}
-
-	public void setDESC_PRJ(String dESC_PRJ) {
-		DESC_PRJ = dESC_PRJ;
-	}
-
-	public Date getDATE_DEB() {
-		return DATE_DEB;
-	}
-
-	public void setDATE_DEB(Date dATE_DEB) {
-		DATE_DEB = dATE_DEB;
-	}
-
-	public Date getDATE_FIN() {
-		return DATE_FIN;
-	}
-
-	public void setDATE_FIN(Date dATE_FIN) {
-		DATE_FIN = dATE_FIN;
-	}
-
-	public Date getDATE_FIN_A() {
-		return DATE_FIN_A;
-	}
-
-	public void setDATE_FIN_A(Date dATE_FIN_A) {
-		DATE_FIN_A = dATE_FIN_A;
-	}
-
-	public String getREF_BUD() {
-		return REF_BUD;
-	}
-
-	public void setREF_BUD(String rEF_BUD) {
-		REF_BUD = rEF_BUD;
-	}
-
-	public String getMAITRE_OEUVRE() {
-		return MAITRE_OEUVRE;
-	}
-
-	public void setMAITRE_OEUVRE(String mAITRE_OEUVRE) {
-		MAITRE_OEUVRE = mAITRE_OEUVRE;
-	}
-
-	public String getMAITRE_OUVRAGE() {
-		return MAITRE_OUVRAGE;
-	}
-
-	public void setMAITRE_OUVRAGE(String mAITRE_OUVRAGE) {
-		MAITRE_OUVRAGE = mAITRE_OUVRAGE;
-	}
-
-	public Integer getTRI() {
-		return TRI;
-	}
-
-	public void setTRI(Integer tRI) {
-		TRI = tRI;
-	}
-
-	public Integer getUNITE_PO_PHY() {
-		return UNITE_PO_PHY;
-	}
-
-	public void setUNITE_PO_PHY(Integer uNITE_PO_PHY) {
-		UNITE_PO_PHY = uNITE_PO_PHY;
-	}
-
-	public Integer getUNITE_PO_FIN() {
-		return UNITE_PO_FIN;
-	}
-
-	public void setUNITE_PO_FIN(Integer uNITE_PO_FIN) {
-		UNITE_PO_FIN = uNITE_PO_FIN;
-	}
-
-	public Integer getUNITE_S_FIN() {
-		return UNITE_S_FIN;
-	}
-
-	public void setUNITE_S_FIN(Integer uNITE_S_FIN) {
-		UNITE_S_FIN = uNITE_S_FIN;
-	}
-
-	public Integer getUNITE_S_PHY() {
-		return UNITE_S_PHY;
-	}
-
-	public void setUNITE_S_PHY(Integer uNITE_S_PHY) {
-		UNITE_S_PHY = uNITE_S_PHY;
-	}
-
-	public Integer getUNITE_PM() {
-		return UNITE_PM;
-	}
-
-	public void setUNITE_PM(Integer uNITE_PM) {
-		UNITE_PM = uNITE_PM;
-	}
-
-	public String getOBS() {
-		return OBS;
-	}
-
-	public void setOBS(String oBS) {
-		OBS = oBS;
-	}
-
-	public Integer getNIV_ZONE() {
-		return NIV_ZONE;
-	}
-
-	public void setNIV_ZONE(Integer nIV_ZONE) {
-		NIV_ZONE = nIV_ZONE;
-	}
-
-	public Integer getFLAG_PLANIF_PHY() {
-		return FLAG_PLANIF_PHY;
-	}
-
-	public void setFLAG_PLANIF_PHY(Integer fLAG_PLANIF_PHY) {
-		FLAG_PLANIF_PHY = fLAG_PLANIF_PHY;
-	}
-
-	public Integer getFLAG_PLANIF_FIN() {
-		return FLAG_PLANIF_FIN;
-	}
-
-	public void setFLAG_PLANIF_FIN(Integer fLAG_PLANIF_FIN) {
-		FLAG_PLANIF_FIN = fLAG_PLANIF_FIN;
-	}
-
-	public Integer getNIV_PLAN_FIN_INIT() {
-		return NIV_PLAN_FIN_INIT;
-	}
-
-	public void setNIV_PLAN_FIN_INIT(Integer nIV_PLAN_FIN_INIT) {
-		NIV_PLAN_FIN_INIT = nIV_PLAN_FIN_INIT;
-	}
-
-	public Integer getNIV_PLAN_PHY_INIT() {
-		return NIV_PLAN_PHY_INIT;
-	}
-
-	public void setNIV_PLAN_PHY_INIT(Integer nIV_PLAN_PHY_INIT) {
-		NIV_PLAN_PHY_INIT = nIV_PLAN_PHY_INIT;
-	}
-
-	public Integer getNIV_PO_FIN() {
-		return NIV_PO_FIN;
-	}
-
-	public void setNIV_PO_FIN(Integer nIV_PO_FIN) {
-		NIV_PO_FIN = nIV_PO_FIN;
-	}
-
-	public Integer getNIV_PO_PHY() {
-		return NIV_PO_PHY;
-	}
-
-	public void setNIV_PO_PHY(Integer nIV_PO_PHY) {
-		NIV_PO_PHY = nIV_PO_PHY;
-	}
-
-	public Integer getNIV_SUIV_FIN() {
-		return NIV_SUIV_FIN;
-	}
-
-	public void setNIV_SUIV_FIN(Integer nIV_SUIV_FIN) {
-		NIV_SUIV_FIN = nIV_SUIV_FIN;
-	}
-
-	public Integer getNIV_SUIV_PHY() {
-		return NIV_SUIV_PHY;
-	}
-
-	public void setNIV_SUIV_PHY(Integer nIV_SUIV_PHY) {
-		NIV_SUIV_PHY = nIV_SUIV_PHY;
-	}
-
-	public Integer getNIV_PDL_FIN() {
-		return NIV_PDL_FIN;
-	}
-
-	public void setNIV_PDL_FIN(Integer nIV_PDL_FIN) {
-		NIV_PDL_FIN = nIV_PDL_FIN;
-	}
-
-	public Integer getNIV_PDL_PHY() {
-		return NIV_PDL_PHY;
-	}
-
-	public void setNIV_PDL_PHY(Integer nIV_PDL_PHY) {
-		NIV_PDL_PHY = nIV_PDL_PHY;
-	}
-
-	public Integer getUNITE_PDL_PHY() {
-		return UNITE_PDL_PHY;
-	}
-
-	public void setUNITE_PDL_PHY(Integer uNITE_PDL_PHY) {
-		UNITE_PDL_PHY = uNITE_PDL_PHY;
-	}
-
-	public Integer getUNITE_PDL_FIN() {
-		return UNITE_PDL_FIN;
-	}
-
-	public void setUNITE_PDL_FIN(Integer uNITE_PDL_FIN) {
-		UNITE_PDL_FIN = uNITE_PDL_FIN;
-	}
-
-	public Integer getUNITE_INIT_PHY() {
-		return UNITE_INIT_PHY;
-	}
-
-	public void setUNITE_INIT_PHY(Integer uNITE_INIT_PHY) {
-		UNITE_INIT_PHY = uNITE_INIT_PHY;
-	}
-
-	public Integer getUNITE_INIT_FIN() {
-		return UNITE_INIT_FIN;
-	}
-
-	public void setUNITE_INIT_FIN(Integer uNITE_INIT_FIN) {
-		UNITE_INIT_FIN = uNITE_INIT_FIN;
-	}
-
-	public Date getDATE_ACT_MT_TRE() {
-		return DATE_ACT_MT_TRE;
-	}
-
-	public void setDATE_ACT_MT_TRE(Date dATE_ACT_MT_TRE) {
-		DATE_ACT_MT_TRE = dATE_ACT_MT_TRE;
-	}
-
-	public Date getDATE_ACT_MT_TOT() {
-		return DATE_ACT_MT_TOT;
-	}
-
-	public void setDATE_ACT_MT_TOT(Date dATE_ACT_MT_TOT) {
-		DATE_ACT_MT_TOT = dATE_ACT_MT_TOT;
-	}
-
-	public String getCODE_DEV() {
-		return CODE_DEV;
-	}
-
-	public void setCODE_DEV(String cODE_DEV) {
-		CODE_DEV = cODE_DEV;
-	}
-
-	public Integer getTAUX_REF() {
-		return TAUX_REF;
-	}
-
-	public void setTAUX_REF(Integer tAUX_REF) {
-		TAUX_REF = tAUX_REF;
-	}
-
-	public Integer getFLAG_PPINIT() {
-		return FLAG_PPINIT;
-	}
-
-	public void setFLAG_PPINIT(Integer fLAG_PPINIT) {
-		FLAG_PPINIT = fLAG_PPINIT;
-	}
-
-	public Integer getFLAG_PPPDP() {
-		return FLAG_PPPDP;
-	}
-
-	public void setFLAG_PPPDP(Integer fLAG_PPPDP) {
-		FLAG_PPPDP = fLAG_PPPDP;
-	}
-
-	public Integer getFLAG_PPPTA() {
-		return FLAG_PPPTA;
-	}
-
-	public void setFLAG_PPPTA(Integer fLAG_PPPTA) {
-		FLAG_PPPTA = fLAG_PPPTA;
-	}
-
-	public Integer getFLAG_SP() {
-		return FLAG_SP;
-	}
-
-	public void setFLAG_SP(Integer fLAG_SP) {
-		FLAG_SP = fLAG_SP;
-	}
-
-	public Integer getFLAG_PFINIT() {
-		return FLAG_PFINIT;
-	}
-
-	public void setFLAG_PFINIT(Integer fLAG_PFINIT) {
-		FLAG_PFINIT = fLAG_PFINIT;
-	}
-
-	public Integer getFLAG_PFPDP() {
-		return FLAG_PFPDP;
-	}
-
-	public void setFLAG_PFPDP(Integer fLAG_PFPDP) {
-		FLAG_PFPDP = fLAG_PFPDP;
-	}
-
-	public Integer getFLAG_PFPTA() {
-		return FLAG_PFPTA;
-	}
-
-	public void setFLAG_PFPTA(Integer fLAG_PFPTA) {
-		FLAG_PFPTA = fLAG_PFPTA;
-	}
-
-	public Integer getFLAG_SAF() {
-		return FLAG_SAF;
-	}
-
-	public void setFLAG_SAF(Integer fLAG_SAF) {
-		FLAG_SAF = fLAG_SAF;
-	}
-
-	public String getREFERENCE_PROGRAMME() {
-		return REFERENCE_PROGRAMME;
-	}
-
-	public void setREFERENCE_PROGRAMME(String rEFERENCE_PROGRAMME) {
-		REFERENCE_PROGRAMME = rEFERENCE_PROGRAMME;
-	}
-
-	public Integer getNIVEAU() {
-		return NIVEAU;
-	}
-
-	public void setNIVEAU(Integer nIVEAU) {
-		NIVEAU = nIVEAU;
-	}
-
-	public Integer getUNITE_PLANIF_AO() {
-		return UNITE_PLANIF_AO;
-	}
-
-	public void setUNITE_PLANIF_AO(Integer uNITE_PLANIF_AO) {
-		UNITE_PLANIF_AO = uNITE_PLANIF_AO;
-	}
-
-	public Integer getUNITE_PLANIF_MARCHE() {
-		return UNITE_PLANIF_MARCHE;
-	}
-
-	public void setUNITE_PLANIF_MARCHE(Integer uNITE_PLANIF_MARCHE) {
-		UNITE_PLANIF_MARCHE = uNITE_PLANIF_MARCHE;
-	}
-
-	public Integer getFLAG_PLANIF_AO() {
-		return FLAG_PLANIF_AO;
-	}
-
-	public void setFLAG_PLANIF_AO(Integer fLAG_PLANIF_AO) {
-		FLAG_PLANIF_AO = fLAG_PLANIF_AO;
-	}
-
-	public Integer getFLAG_PLANIF_MARCHE() {
-		return FLAG_PLANIF_MARCHE;
-	}
-
-	public void setFLAG_PLANIF_MARCHE(Integer fLAG_PLANIF_MARCHE) {
-		FLAG_PLANIF_MARCHE = fLAG_PLANIF_MARCHE;
-	}
-
-	public Integer getID_STRUCTURE() {
-		return ID_STRUCTURE;
-	}
-
-	public void setID_STRUCTURE(Integer Id_STRUCTURE) {
-		ID_STRUCTURE = Id_STRUCTURE;
-	}
-
-	public Integer getTRII() {
-		return TRII;
-	}
-
-	public void setTRII(Integer tRII) {
-		TRII = tRII;
-	}
-
-	public Integer getUNITE_PLANIF_ACT_INDV() {
-		return UNITE_PLANIF_ACT_INDV;
-	}
-
-	public void setUNITE_PLANIF_ACT_INDV(Integer uNITE_PLANIF_ACT_INDV) {
-		UNITE_PLANIF_ACT_INDV = uNITE_PLANIF_ACT_INDV;
-	}
-
-	public Integer getFLAG_PLANIF_ACT_INDV() {
-		return FLAG_PLANIF_ACT_INDV;
-	}
-
-	public void setFLAG_PLANIF_ACT_INDV(Integer fLAG_PLANIF_ACT_INDV) {
-		FLAG_PLANIF_ACT_INDV = fLAG_PLANIF_ACT_INDV;
-	}
-
-	public Date getDATE_ENV_DELEG() {
-		return DATE_ENV_DELEG;
-	}
-
-	public void setDATE_ENV_DELEG(Date dATE_ENV_DELEG) {
-		DATE_ENV_DELEG = dATE_ENV_DELEG;
-	}
-
-	public String getMAITRE_OUVRAGE_DELEG() {
-		return MAITRE_OUVRAGE_DELEG;
-	}
-
-	public void setMAITRE_OUVRAGE_DELEG(String mAITRE_OUVRAGE_DELEG) {
-		MAITRE_OUVRAGE_DELEG = mAITRE_OUVRAGE_DELEG;
-	}
-
-	public Integer getFLAG_MSTR() {
-		return FLAG_MSTR;
-	}
-
-	public void setFLAG_MSTR(Integer fLAG_MSTR) {
-		FLAG_MSTR = fLAG_MSTR;
-	}
-
-	public Integer getFLAG_DELEG() {
-		return FLAG_DELEG;
-	}
-
-	public void setFLAG_DELEG(Integer fLAG_DELEG) {
-		FLAG_DELEG = fLAG_DELEG;
-	}
-
-	public String getINTITULE_PROJET_AR() {
-		return INTITULE_PROJET_AR;
-	}
-
-	public void setINTITULE_PROJET_AR(String iNTITULE_PROJET_AR) {
-		INTITULE_PROJET_AR = iNTITULE_PROJET_AR;
-	}
-
-	public String getDESC_PRJ_AR() {
-		return DESC_PRJ_AR;
-	}
-
-	public void setDESC_PRJ_AR(String dESC_PRJ_AR) {
-		DESC_PRJ_AR = dESC_PRJ_AR;
-	}
-
-	public String getMAITRE_OEUVRE_AR() {
-		return MAITRE_OEUVRE_AR;
-	}
-
-	public void setMAITRE_OEUVRE_AR(String mAITRE_OEUVRE_AR) {
-		MAITRE_OEUVRE_AR = mAITRE_OEUVRE_AR;
-	}
-
-	public String getMAITRE_OUVRAGE_AR() {
-		return MAITRE_OUVRAGE_AR;
-	}
-
-	public void setMAITRE_OUVRAGE_AR(String mAITRE_OUVRAGE_AR) {
-		MAITRE_OUVRAGE_AR = mAITRE_OUVRAGE_AR;
-	}
-
-	public String getREF_BUDJET_AR() {
-		return REF_BUDJET_AR;
-	}
-
-	public void setREF_BUDJET_AR(String rEF_BUDJET_AR) {
-		REF_BUDJET_AR = rEF_BUDJET_AR;
-	}
-
-	public Integer getCOUT_PRJ() {
-		return COUT_PRJ;
-	}
-
-	public void setCOUT_PRJ(Integer cOUT_PRJ) {
-		COUT_PRJ = cOUT_PRJ;
-	}
-
-	public Integer getCOUT_PRJ_A() {
-		return COUT_PRJ_A;
-	}
-
-	public void setCOUT_PRJ_A(Integer cOUT_PRJ_A) {
-		COUT_PRJ_A = cOUT_PRJ_A;
-	}
-
-	public Integer getCOUT_TR() {
-		return COUT_TR;
-	}
-
-	public void setCOUT_TR(Integer cOUT_TR) {
-		COUT_TR = cOUT_TR;
-	}
-
-	public Integer getCOUT_TR_A() {
-		return COUT_TR_A;
-	}
-
-	public void setCOUT_TR_A(Integer cOUT_TR_A) {
-		COUT_TR_A = cOUT_TR_A;
-	}
-
-	public Integer getCOUT_PRJ_ML() {
-		return COUT_PRJ_ML;
-	}
-
-	public void setCOUT_PRJ_ML(Integer cOUT_PRJ_ML) {
-		COUT_PRJ_ML = cOUT_PRJ_ML;
-	}
-
-	public Integer getCOUT_PRJ_ML_A() {
-		return COUT_PRJ_ML_A;
-	}
-
-	public void setCOUT_PRJ_ML_A(Integer cOUT_PRJ_ML_A) {
-		COUT_PRJ_ML_A = cOUT_PRJ_ML_A;
-	}
-
-	public Date getDATE_SAISIE() {
-		return DATE_SAISIE;
-	}
-
-	public void setDATE_SAISIE(Date dATE_SAISIE) {
-		DATE_SAISIE = dATE_SAISIE;
-	}
-
-	public Date getDATE_MAJ() {
-		return DATE_MAJ;
-	}
-
-	public void setDATE_MAJ(Date dATE_MAJ) {
-		DATE_MAJ = dATE_MAJ;
-	}
-
-	public String getSOUS_SECTEUR() {
-		return SOUS_SECTEUR;
-	}
-
-	public void setSOUS_SECTEUR(String sOUS_SECTEUR) {
-		SOUS_SECTEUR = sOUS_SECTEUR;
-	}
-
-	public Integer getID_STR_SECTEUR() {
-		return ID_STR_SECTEUR;
-	}
-
-	public void setID_STR_SECTEUR(Integer iD_STR_SECTEUR) {
-		ID_STR_SECTEUR = iD_STR_SECTEUR;
-	}
-
-	public String getOBS_AR() {
-		return OBS_AR;
-	}
-
-	public void setOBS_AR(String oBS_AR) {
-		OBS_AR = oBS_AR;
-	}
-
-	public Integer getFLAG_DECISION() {
-		return FLAG_DECISION;
-	}
-
-	public void setFLAG_DECISION(Integer fLAG_DECISION) {
-		FLAG_DECISION = fLAG_DECISION;
-	}
-
-	public Integer getF_DELETE() {
-		return F_DELETE;
-	}
-
-	public void setF_DELETE(Integer f_DELETE) {
-		F_DELETE = f_DELETE;
-	}
-
-	public Integer getFLAG_EN_DIFFICULTE() {
-		return FLAG_EN_DIFFICULTE;
-	}
-
-	public void setFLAG_EN_DIFFICULTE(Integer fLAG_EN_DIFFICULTE) {
-		FLAG_EN_DIFFICULTE = fLAG_EN_DIFFICULTE;
+       
+		/**
+		 * @param id_projet
+		 * @param reference_Projet
+		 * @param code_Type_Prj
+		 * @param intitule_Prj
+		 * @param desc_Prj
+		 * @param date_Deb
+		 * @param date_Fin
+		 * @param date_Fin_A
+		 * @param ref_Bud
+		 * @param maitre_Oeuvre
+		 * @param maitre_Ouvrage
+		 * @param tri
+		 * @param unite_Po_Phy
+		 * @param unite_Po_Fin
+		 * @param unite_S_Fin
+		 * @param unite_S_Phy
+		 * @param unite_Pm
+		 * @param obs
+		 * @param niv_Zone
+		 * @param flag_Planif_Phy
+		 * @param flag_Planif_Fin
+		 * @param niv_Plan_Fin_Init
+		 * @param niv_Plan_Phy_Init
+		 * @param niv_Po_Fin
+		 * @param niv_Po_Phy
+		 * @param niv_Suiv_Fin
+		 * @param niv_Suiv_Phy
+		 * @param niv_Pdl_Fin
+		 * @param niv_Pdl_Phy
+		 * @param unite_Pdl_Phy
+		 * @param unite_Pdl_Fin
+		 * @param unite_Init_Phy
+		 * @param unite_Init_Fin
+		 * @param date_Act_Mt_Tre
+		 * @param date_Act_Mt_Tot
+		 * @param code_Dev
+		 * @param taux_Ref
+		 * @param flag_Ppinit
+		 * @param flag_Pppdp
+		 * @param flag_Pppta
+		 * @param flag_Sp
+		 * @param flag_Pfinit
+		 * @param flag_Pfpdp
+		 * @param flag_Pfpta
+		 * @param flag_Saf
+		 * @param reference_Programme
+		 * @param niveau
+		 * @param unite_Planif_Ao
+		 * @param unite_Planif_Marche
+		 * @param flag_Planif_Ao
+		 * @param flag_Planif_Marche
+		 * @param trii
+		 * @param unite_Planif_Act_Indv
+		 * @param flag_Planif_Act_Indv
+		 * @param date_Env_Deleg
+		 * @param maitre_Ouvrage_Deleg
+		 * @param flag_Mstr
+		 * @param flag_Deleg
+		 * @param intitule_Projet_Ar
+		 * @param desc_Prj_Ar
+		 * @param maitre_Oeuvrage_Ar
+		 * @param maitre_Ouvrage_Ar
+		 * @param ref_Budjet_Ar
+		 * @param cout_Prj
+		 * @param cout_Prj_A
+		 * @param cout_Tr
+		 * @param cout_Tr_A
+		 * @param cout_Prj_Ml
+		 * @param cout_Prj_Ml_A
+		 * @param date_Saisie
+		 * @param date_Maj
+		 * @param sous_Secteur
+		 * @param id_Str_Secteur
+		 * @param obs_Ar
+		 * @param flag_Decision
+		 * @param f_Delete
+		 * @param flag_En_Difficulte
+		 */
+		public Projet(Integer id_projet, String reference_Projet, String code_Type_Prj, String intitule_Prj,
+				String desc_Prj, Date date_Deb, Date date_Fin, Date date_Fin_A, String ref_Bud, String maitre_Oeuvre,
+				String maitre_Ouvrage, Integer tri, Integer unite_Po_Phy, Integer unite_Po_Fin, Integer unite_S_Fin,
+				Integer unite_S_Phy, Integer unite_Pm, String obs, Integer niv_Zone, Integer flag_Planif_Phy,
+				Integer flag_Planif_Fin, Integer niv_Plan_Fin_Init, Integer niv_Plan_Phy_Init, Integer niv_Po_Fin,
+				Integer niv_Po_Phy, Integer niv_Suiv_Fin, Integer niv_Suiv_Phy, Integer niv_Pdl_Fin,
+				Integer niv_Pdl_Phy, Integer unite_Pdl_Phy, Integer unite_Pdl_Fin, Integer unite_Init_Phy,
+				Integer unite_Init_Fin, Date date_Act_Mt_Tre, Date date_Act_Mt_Tot, String code_Dev, Integer taux_Ref,
+				Integer flag_Ppinit, Integer flag_Pppdp, Integer flag_Pppta, Integer flag_Sp, Integer flag_Pfinit,
+				Integer flag_Pfpdp, Integer flag_Pfpta, Integer flag_Saf, String reference_Programme, Integer niveau,
+				Integer unite_Planif_Ao, Integer unite_Planif_Marche, Integer flag_Planif_Ao,
+				Integer flag_Planif_Marche, Integer trii, Integer unite_Planif_Act_Indv, Integer flag_Planif_Act_Indv,
+				Date date_Env_Deleg, String maitre_Ouvrage_Deleg, Integer flag_Mstr, Integer flag_Deleg,
+				String intitule_Projet_Ar, String desc_Prj_Ar, String maitre_Oeuvrage_Ar, String maitre_Ouvrage_Ar,
+				String ref_Budjet_Ar, Integer cout_Prj, Integer cout_Prj_A, Integer cout_Tr, Integer cout_Tr_A,
+				Integer cout_Prj_Ml, Integer cout_Prj_Ml_A, Date date_Saisie, Date date_Maj, String sous_Secteur,
+				Integer id_Str_Secteur, String obs_Ar, Integer flag_Decision, Integer f_Delete,
+				Integer flag_En_Difficulte) {
+			super();
+			Id_projet = id_projet;
+			Reference_Projet = reference_Projet;
+			Code_Type_Prj = code_Type_Prj;
+			Intitule_Prj = intitule_Prj;
+			Desc_Prj = desc_Prj;
+			Date_Deb = date_Deb;
+			Date_Fin = date_Fin;
+			Date_Fin_A = date_Fin_A;
+			Ref_Bud = ref_Bud;
+			Maitre_Oeuvre = maitre_Oeuvre;
+			Maitre_Ouvrage = maitre_Ouvrage;
+			Tri = tri;
+			Unite_Po_Phy = unite_Po_Phy;
+			Unite_Po_Fin = unite_Po_Fin;
+			Unite_S_Fin = unite_S_Fin;
+			Unite_S_Phy = unite_S_Phy;
+			Unite_Pm = unite_Pm;
+			Obs = obs;
+			Niv_Zone = niv_Zone;
+			Flag_Planif_Phy = flag_Planif_Phy;
+			Flag_Planif_Fin = flag_Planif_Fin;
+			Niv_Plan_Fin_Init = niv_Plan_Fin_Init;
+			Niv_Plan_Phy_Init = niv_Plan_Phy_Init;
+			Niv_Po_Fin = niv_Po_Fin;
+			Niv_Po_Phy = niv_Po_Phy;
+			Niv_Suiv_Fin = niv_Suiv_Fin;
+			Niv_Suiv_Phy = niv_Suiv_Phy;
+			Niv_Pdl_Fin = niv_Pdl_Fin;
+			Niv_Pdl_Phy = niv_Pdl_Phy;
+			Unite_Pdl_Phy = unite_Pdl_Phy;
+			Unite_Pdl_Fin = unite_Pdl_Fin;
+			Unite_Init_Phy = unite_Init_Phy;
+			Unite_Init_Fin = unite_Init_Fin;
+			Date_Act_Mt_Tre = date_Act_Mt_Tre;
+			Date_Act_Mt_Tot = date_Act_Mt_Tot;
+			Code_Dev = code_Dev;
+			Taux_Ref = taux_Ref;
+			Flag_Ppinit = flag_Ppinit;
+			Flag_Pppdp = flag_Pppdp;
+			Flag_Pppta = flag_Pppta;
+			Flag_Sp = flag_Sp;
+			Flag_Pfinit = flag_Pfinit;
+			Flag_Pfpdp = flag_Pfpdp;
+			Flag_Pfpta = flag_Pfpta;
+			Flag_Saf = flag_Saf;
+			Reference_Programme = reference_Programme;
+			Niveau = niveau;
+			Unite_Planif_Ao = unite_Planif_Ao;
+			Unite_Planif_Marche = unite_Planif_Marche;
+			Flag_Planif_Ao = flag_Planif_Ao;
+			Flag_Planif_Marche = flag_Planif_Marche;
+			Trii = trii;
+			Unite_Planif_Act_Indv = unite_Planif_Act_Indv;
+			Flag_Planif_Act_Indv = flag_Planif_Act_Indv;
+			Date_Env_Deleg = date_Env_Deleg;
+			Maitre_Ouvrage_Deleg = maitre_Ouvrage_Deleg;
+			Flag_Mstr = flag_Mstr;
+			Flag_Deleg = flag_Deleg;
+			Intitule_Projet_Ar = intitule_Projet_Ar;
+			Desc_Prj_Ar = desc_Prj_Ar;
+			Maitre_Oeuvrage_Ar = maitre_Oeuvrage_Ar;
+			Maitre_Ouvrage_Ar = maitre_Ouvrage_Ar;
+			Ref_Budjet_Ar = ref_Budjet_Ar;
+			Cout_Prj = cout_Prj;
+			Cout_Prj_A = cout_Prj_A;
+			Cout_Tr = cout_Tr;
+			Cout_Tr_A = cout_Tr_A;
+			Cout_Prj_Ml = cout_Prj_Ml;
+			Cout_Prj_Ml_A = cout_Prj_Ml_A;
+			Date_Saisie = date_Saisie;
+			Date_Maj = date_Maj;
+			Sous_Secteur = sous_Secteur;
+			Id_Str_Secteur = id_Str_Secteur;
+			Obs_Ar = obs_Ar;
+			Flag_Decision = flag_Decision;
+			F_Delete = f_Delete;
+			Flag_En_Difficulte = flag_En_Difficulte;
 		}
 
+
+
+
+
+		public Integer getId_projet() {
+			return Id_projet;
+		}
+
+		public void setId_projet(Integer id_projet) {
+			Id_projet = id_projet;
+		}
+
+		public String getReference_Projet() {
+			return Reference_Projet;
+		}
+
+		public void setReference_Projet(String reference_Projet) {
+			Reference_Projet = reference_Projet;
+		}
+
+		public String getCode_Type_Prj() {
+			return Code_Type_Prj;
+		}
+
+		public void setCode_Type_Prj(String code_Type_Prj) {
+			Code_Type_Prj = code_Type_Prj;
+		}
+
+		public String getIntitule_Prj() {
+			return Intitule_Prj;
+		}
+
+		public void setIntitule_Prj(String intitule_Prj) {
+			Intitule_Prj = intitule_Prj;
+		}
+
+		public String getDesc_Prj() {
+			return Desc_Prj;
+		}
+
+		public void setDesc_Prj(String desc_Prj) {
+			Desc_Prj = desc_Prj;
+		}
+
+		public Date getDate_Deb() {
+			return Date_Deb;
+		}
+
+		public void setDate_Deb(Date date_Deb) {
+			Date_Deb = date_Deb;
+		}
+
+		public Date getDate_Fin() {
+			return Date_Fin;
+		}
+
+		public void setDate_Fin(Date date_Fin) {
+			Date_Fin = date_Fin;
+		}
+
+		public Date getDate_Fin_A() {
+			return Date_Fin_A;
+		}
+
+		public void setDate_Fin_A(Date date_Fin_A) {
+			Date_Fin_A = date_Fin_A;
+		}
+
+		public String getRef_Bud() {
+			return Ref_Bud;
+		}
+
+		public void setRef_Bud(String ref_Bud) {
+			Ref_Bud = ref_Bud;
+		}
+
+		public String getMaitre_Oeuvre() {
+			return Maitre_Oeuvre;
+		}
+
+		public void setMaitre_Oeuvre(String maitre_Oeuvre) {
+			Maitre_Oeuvre = maitre_Oeuvre;
+		}
+
+		public String getMaitre_Ouvrage() {
+			return Maitre_Ouvrage;
+		}
+
+		public void setMaitre_Ouvrage(String maitre_Ouvrage) {
+			Maitre_Ouvrage = maitre_Ouvrage;
+		}
+
+		public Integer getTri() {
+			return Tri;
+		}
+
+		public void setTri(Integer tri) {
+			Tri = tri;
+		}
+
+		public Integer getUnite_Po_Phy() {
+			return Unite_Po_Phy;
+		}
+
+		public void setUnite_Po_Phy(Integer unite_Po_Phy) {
+			Unite_Po_Phy = unite_Po_Phy;
+		}
+
+		public Integer getUnite_Po_Fin() {
+			return Unite_Po_Fin;
+		}
+
+		public void setUnite_Po_Fin(Integer unite_Po_Fin) {
+			Unite_Po_Fin = unite_Po_Fin;
+		}
+
+		public Integer getUnite_S_Fin() {
+			return Unite_S_Fin;
+		}
+
+		public void setUnite_S_Fin(Integer unite_S_Fin) {
+			Unite_S_Fin = unite_S_Fin;
+		}
+
+		public Integer getUnite_S_Phy() {
+			return Unite_S_Phy;
+		}
+
+		public void setUnite_S_Phy(Integer unite_S_Phy) {
+			Unite_S_Phy = unite_S_Phy;
+		}
+
+		public Integer getUnite_Pm() {
+			return Unite_Pm;
+		}
+
+		public void setUnite_Pm(Integer unite_Pm) {
+			Unite_Pm = unite_Pm;
+		}
+
+		public String getObs() {
+			return Obs;
+		}
+
+		public void setObs(String obs) {
+			Obs = obs;
+		}
+
+		public Integer getNiv_Zone() {
+			return Niv_Zone;
+		}
+
+		public void setNiv_Zone(Integer niv_Zone) {
+			Niv_Zone = niv_Zone;
+		}
+
+		public Integer getFlag_Planif_Phy() {
+			return Flag_Planif_Phy;
+		}
+
+		public void setFlag_Planif_Phy(Integer flag_Planif_Phy) {
+			Flag_Planif_Phy = flag_Planif_Phy;
+		}
+
+		public Integer getFlag_Planif_Fin() {
+			return Flag_Planif_Fin;
+		}
+
+		public void setFlag_Planif_Fin(Integer flag_Planif_Fin) {
+			Flag_Planif_Fin = flag_Planif_Fin;
+		}
+
+		public Integer getNiv_Plan_Fin_Init() {
+			return Niv_Plan_Fin_Init;
+		}
+
+		public void setNiv_Plan_Fin_Init(Integer niv_Plan_Fin_Init) {
+			Niv_Plan_Fin_Init = niv_Plan_Fin_Init;
+		}
+
+		public Integer getNiv_Plan_Phy_Init() {
+			return Niv_Plan_Phy_Init;
+		}
+
+		public void setNiv_Plan_Phy_Init(Integer niv_Plan_Phy_Init) {
+			Niv_Plan_Phy_Init = niv_Plan_Phy_Init;
+		}
+
+		public Integer getNiv_Po_Fin() {
+			return Niv_Po_Fin;
+		}
+
+		public void setNiv_Po_Fin(Integer niv_Po_Fin) {
+			Niv_Po_Fin = niv_Po_Fin;
+		}
+
+		public Integer getNiv_Po_Phy() {
+			return Niv_Po_Phy;
+		}
+
+		public void setNiv_Po_Phy(Integer niv_Po_Phy) {
+			Niv_Po_Phy = niv_Po_Phy;
+		}
+
+		public Integer getNiv_Suiv_Fin() {
+			return Niv_Suiv_Fin;
+		}
+
+		public void setNiv_Suiv_Fin(Integer niv_Suiv_Fin) {
+			Niv_Suiv_Fin = niv_Suiv_Fin;
+		}
+
+		public Integer getNiv_Suiv_Phy() {
+			return Niv_Suiv_Phy;
+		}
+
+		public void setNiv_Suiv_Phy(Integer niv_Suiv_Phy) {
+			Niv_Suiv_Phy = niv_Suiv_Phy;
+		}
+
+		public Integer getNiv_Pdl_Fin() {
+			return Niv_Pdl_Fin;
+		}
+
+		public void setNiv_Pdl_Fin(Integer niv_Pdl_Fin) {
+			Niv_Pdl_Fin = niv_Pdl_Fin;
+		}
+
+		public Integer getNiv_Pdl_Phy() {
+			return Niv_Pdl_Phy;
+		}
+
+		public void setNiv_Pdl_Phy(Integer niv_Pdl_Phy) {
+			Niv_Pdl_Phy = niv_Pdl_Phy;
+		}
+
+		public Integer getUnite_Pdl_Phy() {
+			return Unite_Pdl_Phy;
+		}
+
+		public void setUnite_Pdl_Phy(Integer unite_Pdl_Phy) {
+			Unite_Pdl_Phy = unite_Pdl_Phy;
+		}
+
+		public Integer getUnite_Pdl_Fin() {
+			return Unite_Pdl_Fin;
+		}
+
+		public void setUnite_Pdl_Fin(Integer unite_Pdl_Fin) {
+			Unite_Pdl_Fin = unite_Pdl_Fin;
+		}
+
+		public Integer getUnite_Init_Phy() {
+			return Unite_Init_Phy;
+		}
+
+		public void setUnite_Init_Phy(Integer unite_Init_Phy) {
+			Unite_Init_Phy = unite_Init_Phy;
+		}
+
+		public Integer getUnite_Init_Fin() {
+			return Unite_Init_Fin;
+		}
+
+		public void setUnite_Init_Fin(Integer unite_Init_Fin) {
+			Unite_Init_Fin = unite_Init_Fin;
+		}
+
+		public Date getDate_Act_Mt_Tre() {
+			return Date_Act_Mt_Tre;
+		}
+
+		public void setDate_Act_Mt_Tre(Date date_Act_Mt_Tre) {
+			Date_Act_Mt_Tre = date_Act_Mt_Tre;
+		}
+
+		public Date getDate_Act_Mt_Tot() {
+			return Date_Act_Mt_Tot;
+		}
+
+		public void setDate_Act_Mt_Tot(Date date_Act_Mt_Tot) {
+			Date_Act_Mt_Tot = date_Act_Mt_Tot;
+		}
+
+		public String getCode_Dev() {
+			return Code_Dev;
+		}
+
+		public void setCode_Dev(String code_Dev) {
+			Code_Dev = code_Dev;
+		}
+
+		public Integer getTaux_Ref() {
+			return Taux_Ref;
+		}
+
+		public void setTaux_Ref(Integer taux_Ref) {
+			Taux_Ref = taux_Ref;
+		}
+
+		public Integer getFlag_Ppinit() {
+			return Flag_Ppinit;
+		}
+
+		public void setFlag_Ppinit(Integer flag_Ppinit) {
+			Flag_Ppinit = flag_Ppinit;
+		}
+
+		public Integer getFlag_Pppdp() {
+			return Flag_Pppdp;
+		}
+
+		public void setFlag_Pppdp(Integer flag_Pppdp) {
+			Flag_Pppdp = flag_Pppdp;
+		}
+
+		public Integer getFlag_Pppta() {
+			return Flag_Pppta;
+		}
+
+		public void setFlag_Pppta(Integer flag_Pppta) {
+			Flag_Pppta = flag_Pppta;
+		}
+
+		public Integer getFlag_Sp() {
+			return Flag_Sp;
+		}
+
+		public void setFlag_Sp(Integer flag_Sp) {
+			Flag_Sp = flag_Sp;
+		}
+
+		public Integer getFlag_Pfinit() {
+			return Flag_Pfinit;
+		}
+
+		public void setFlag_Pfinit(Integer flag_Pfinit) {
+			Flag_Pfinit = flag_Pfinit;
+		}
+
+		public Integer getFlag_Pfpdp() {
+			return Flag_Pfpdp;
+		}
+
+		public void setFlag_Pfpdp(Integer flag_Pfpdp) {
+			Flag_Pfpdp = flag_Pfpdp;
+		}
+
+		public Integer getFlag_Pfpta() {
+			return Flag_Pfpta;
+		}
+
+		public void setFlag_Pfpta(Integer flag_Pfpta) {
+			Flag_Pfpta = flag_Pfpta;
+		}
+
+		public Integer getFlag_Saf() {
+			return Flag_Saf;
+		}
+
+		public void setFlag_Saf(Integer flag_Saf) {
+			Flag_Saf = flag_Saf;
+		}
+
+		public String getReference_Programme() {
+			return Reference_Programme;
+		}
+
+		public void setReference_Programme(String reference_Programme) {
+			Reference_Programme = reference_Programme;
+		}
+
+		public Integer getNiveau() {
+			return Niveau;
+		}
+
+		public void setNiveau(Integer niveau) {
+			Niveau = niveau;
+		}
+
+		public Integer getUnite_Planif_Ao() {
+			return Unite_Planif_Ao;
+		}
+
+		public void setUnite_Planif_Ao(Integer unite_Planif_Ao) {
+			Unite_Planif_Ao = unite_Planif_Ao;
+		}
+
+		public Integer getUnite_Planif_Marche() {
+			return Unite_Planif_Marche;
+		}
+
+		public void setUnite_Planif_Marche(Integer unite_Planif_Marche) {
+			Unite_Planif_Marche = unite_Planif_Marche;
+		}
+
+		public Integer getFlag_Planif_Ao() {
+			return Flag_Planif_Ao;
+		}
+
+		public void setFlag_Planif_Ao(Integer flag_Planif_Ao) {
+			Flag_Planif_Ao = flag_Planif_Ao;
+		}
+
+		public Integer getFlag_Planif_Marche() {
+			return Flag_Planif_Marche;
+		}
+
+		public void setFlag_Planif_Marche(Integer flag_Planif_Marche) {
+			Flag_Planif_Marche = flag_Planif_Marche;
+		}
+
+		public Integer getTrii() {
+			return Trii;
+		}
+
+		public void setTrii(Integer trii) {
+			Trii = trii;
+		}
+
+		public Integer getUnite_Planif_Act_Indv() {
+			return Unite_Planif_Act_Indv;
+		}
+
+		public void setUnite_Planif_Act_Indv(Integer unite_Planif_Act_Indv) {
+			Unite_Planif_Act_Indv = unite_Planif_Act_Indv;
+		}
+
+		public Integer getFlag_Planif_Act_Indv() {
+			return Flag_Planif_Act_Indv;
+		}
+
+		public void setFlag_Planif_Act_Indv(Integer flag_Planif_Act_Indv) {
+			Flag_Planif_Act_Indv = flag_Planif_Act_Indv;
+		}
+
+		public Date getDate_Env_Deleg() {
+			return Date_Env_Deleg;
+		}
+
+		public void setDate_Env_Deleg(Date date_Env_Deleg) {
+			Date_Env_Deleg = date_Env_Deleg;
+		}
+
+		public String getMaitre_Ouvrage_Deleg() {
+			return Maitre_Ouvrage_Deleg;
+		}
+
+		public void setMaitre_Ouvrage_Deleg(String maitre_Ouvrage_Deleg) {
+			Maitre_Ouvrage_Deleg = maitre_Ouvrage_Deleg;
+		}
+
+		public Integer getFlag_Mstr() {
+			return Flag_Mstr;
+		}
+
+		public void setFlag_Mstr(Integer flag_Mstr) {
+			Flag_Mstr = flag_Mstr;
+		}
+
+		public Integer getFlag_Deleg() {
+			return Flag_Deleg;
+		}
+
+		public void setFlag_Deleg(Integer flag_Deleg) {
+			Flag_Deleg = flag_Deleg;
+		}
+
+		public String getIntitule_Projet_Ar() {
+			return Intitule_Projet_Ar;
+		}
+
+		public void setIntitule_Projet_Ar(String intitule_Projet_Ar) {
+			Intitule_Projet_Ar = intitule_Projet_Ar;
+		}
+
+		public String getDesc_Prj_Ar() {
+			return Desc_Prj_Ar;
+		}
+
+		public void setDesc_Prj_Ar(String desc_Prj_Ar) {
+			Desc_Prj_Ar = desc_Prj_Ar;
+		}
+
+		public String getMaitre_Oeuvrage_Ar() {
+			return Maitre_Oeuvrage_Ar;
+		}
+
+		public void setMaitre_Oeuvrage_Ar(String maitre_Oeuvrage_Ar) {
+			Maitre_Oeuvrage_Ar = maitre_Oeuvrage_Ar;
+		}
+
+		public String getMaitre_Ouvrage_Ar() {
+			return Maitre_Ouvrage_Ar;
+		}
+
+		public void setMaitre_Ouvrage_Ar(String maitre_Ouvrage_Ar) {
+			Maitre_Ouvrage_Ar = maitre_Ouvrage_Ar;
+		}
+
+		public String getRef_Budjet_Ar() {
+			return Ref_Budjet_Ar;
+		}
+
+		public void setRef_Budjet_Ar(String ref_Budjet_Ar) {
+			Ref_Budjet_Ar = ref_Budjet_Ar;
+		}
+
+		public Integer getCout_Prj() {
+			return Cout_Prj;
+		}
+
+		public void setCout_Prj(Integer cout_Prj) {
+			Cout_Prj = cout_Prj;
+		}
+
+		public Integer getCout_Prj_A() {
+			return Cout_Prj_A;
+		}
+
+		public void setCout_Prj_A(Integer cout_Prj_A) {
+			Cout_Prj_A = cout_Prj_A;
+		}
+
+		public Integer getCout_Tr() {
+			return Cout_Tr;
+		}
+
+		public void setCout_Tr(Integer cout_Tr) {
+			Cout_Tr = cout_Tr;
+		}
+
+		public Integer getCout_Tr_A() {
+			return Cout_Tr_A;
+		}
+
+		public void setCout_Tr_A(Integer cout_Tr_A) {
+			Cout_Tr_A = cout_Tr_A;
+		}
+
+		public Integer getCout_Prj_Ml() {
+			return Cout_Prj_Ml;
+		}
+
+		public void setCout_Prj_Ml(Integer cout_Prj_Ml) {
+			Cout_Prj_Ml = cout_Prj_Ml;
+		}
+
+		public Integer getCout_Prj_Ml_A() {
+			return Cout_Prj_Ml_A;
+		}
+
+		public void setCout_Prj_Ml_A(Integer cout_Prj_Ml_A) {
+			Cout_Prj_Ml_A = cout_Prj_Ml_A;
+		}
+
+		public Date getDate_Saisie() {
+			return Date_Saisie;
+		}
+
+		public void setDate_Saisie(Date date_Saisie) {
+			Date_Saisie = date_Saisie;
+		}
+
+		public Date getDate_Maj() {
+			return Date_Maj;
+		}
+
+		public void setDate_Maj(Date date_Maj) {
+			Date_Maj = date_Maj;
+		}
+
+		public String getSous_Secteur() {
+			return Sous_Secteur;
+		}
+
+		public void setSous_Secteur(String sous_Secteur) {
+			Sous_Secteur = sous_Secteur;
+		}
+
+		public Integer getId_Str_Secteur() {
+			return Id_Str_Secteur;
+		}
+
+		public void setId_Str_Secteur(Integer id_Str_Secteur) {
+			Id_Str_Secteur = id_Str_Secteur;
+		}
+
+		public String getObs_Ar() {
+			return Obs_Ar;
+		}
+
+		public void setObs_Ar(String obs_Ar) {
+			Obs_Ar = obs_Ar;
+		}
+
+		public Integer getFlag_Decision() {
+			return Flag_Decision;
+		}
+
+		public void setFlag_Decision(Integer flag_Decision) {
+			Flag_Decision = flag_Decision;
+		}
+
+		public Integer getF_Delete() {
+			return F_Delete;
+		}
+
+		public void setF_Delete(Integer f_Delete) {
+			F_Delete = f_Delete;
+		}
+
+		public Integer getFlag_En_Difficulte() {
+			return Flag_En_Difficulte;
+		}
+
+		public void setFlag_En_Difficulte(Integer flag_En_Difficulte) {
+			Flag_En_Difficulte = flag_En_Difficulte;
+		}
+	
+
+    
+  
 		
     
 

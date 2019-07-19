@@ -2,6 +2,7 @@ package com.test.dao;
 
 
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,18 +15,18 @@ import com.test.entities.Projet;
 public interface ProjetRepository extends JpaRepository<Projet, Integer> {
 	
 	
-@Query("select p from Projet p where p.id =:structuresid_id")
-	List<Projet> getProjByStructureid(@Param("structuresid_id") Integer structuresid_id);
+@Query("select p from Projet p where p.Id_projet =:Id_Structure ")
+	List<Projet> getProjByStructureid(@Param("Id_Structure") Integer Id_Structure);
 //COALESCE(DATE_FIN_A ,DATE_FIN)
 
-@Query("select p from Projet p where p.id like CODE_STADE")
-	List<Projet> getProjByStade(@Param("CODE_STADE") String CODE_STADE);
+@Query("select p from Projet p where p.Id_projet =:Code_Stade")
+	List<Projet> getProjByStade(@Param("Code_Stade") String Code_Stade);
 
 
 
-@Query("select p from Projet p where p.FLAG_EN_DIFFICULTE =:FLAG_EN_DIFFICULTE")
-	List<Projet> getProjBydifficulte(@Param("FLAG_EN_DIFFICULTE") Integer FLAG_EN_DIFFICULTE);
+@Query("select p from Projet p where p.Flag_En_Difficulte =:Flag_En_Difficulte")
+	List<Projet> getProjBydifficulte(@Param("Flag_En_Difficulte") Integer Flag_En_Difficulte);
 
-
-
+//@Query("select p from Projet p ")
+	//List<Projet> getAllProjets(@Param("Id_projet") Integer Id_projet);
 }
