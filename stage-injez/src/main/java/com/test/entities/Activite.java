@@ -11,16 +11,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Indexed;
 
 @IdClass(Activite.class)
 @Entity
+@Table(indexes = { @Index(name = "ACTIVITE_INDEX1", columnList = "Id_projet")})
+
 public class Activite implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Code_Activite", updatable = false, nullable = false)
