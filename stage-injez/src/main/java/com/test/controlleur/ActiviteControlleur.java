@@ -33,9 +33,9 @@ public class ActiviteControlleur {
 		}
 
 	
-	@RequestMapping(value="/activite/{Code_Activite}",method = RequestMethod.GET)
-	public Optional<Activite> findBycodefe(String Code_Activite) {
-		return activiteService.findByCode_Activite(Code_Activite);
+	@RequestMapping(value="/activitee/{activite}",method = RequestMethod.GET)
+	public List<Activite> findBycodefe(Activite	 activite) {
+		return activiteService.findByCode_Activite(activite);
 	}
 
 }

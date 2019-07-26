@@ -33,7 +33,7 @@ public class Structure {
     private String Code_Zone;
 
     
-    @OneToMany(mappedBy = "Id_Structure", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "structure", cascade = CascadeType.ALL)
     private Collection<Projet> projet;
  
     @JsonIgnore

@@ -15,7 +15,7 @@ import com.test.entities.Structure;
 
 import com.test.service.StructureService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/")
 
 @Controller
@@ -38,6 +38,10 @@ public class StructureControlleur {
 	@GetMapping("/structur/{Id_Structure}")
 	public Optional<Structure> findByStructure(Integer Id_Structure) {
 		return structureService.findByStructure(Id_Structure);
+	}
+	@GetMapping("/struct/{Des}")
+	public List<Structure> findbyintitul(String Des) {
+		return structureService.StructureByIntituler(Des);
 	}
 
 }

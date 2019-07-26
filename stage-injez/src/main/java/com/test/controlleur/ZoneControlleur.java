@@ -14,7 +14,7 @@ import com.test.entities.FE;
 import com.test.entities.ZONE;
 import com.test.service.ZoneService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/")
 
 @RestController

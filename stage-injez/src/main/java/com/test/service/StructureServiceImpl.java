@@ -31,4 +31,10 @@ public class StructureServiceImpl implements StructureService {
 		return (Optional<Structure>)structureRepository.findById(Id_Structure);
 	}
 
+	@Override
+	public List<Structure> StructureByIntituler(String Des) {
+		// TODO Auto-generated method stub
+		return (List<Structure>)structureRepository.StructureByIntituler(Des);
+	}
+
 }

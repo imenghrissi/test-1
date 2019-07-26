@@ -32,4 +32,16 @@ public class FeServiceImpl implements FeService {
 		return (Optional<FE>)feRepository.findById(Code_Fe);
 	}
 
+	@Override
+	public Optional<FE> getProjBycodebf(String Code_Bf) {
+		// TODO Auto-generated method stub
+		return (Optional<FE>)feRepository.findById(Code_Bf);
+	}
+
+	@Override
+	public Optional<FE> FEByIntituler(String Des_Fe) {
+		// TODO Auto-generated method stub
+		return (Optional<FE>)feRepository.findById(Des_Fe);
+	}
+
 }

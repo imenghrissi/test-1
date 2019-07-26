@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.test.dao.ProjetRepository;
 import com.test.entities.Projet;
+import com.test.entities.STADE_PROJET;
+import com.test.entities.Structure;
+import com.test.entities.Type_Projet;
+
 import java.util.Optional;
 
 @Service("ProjetServiceImpl")
@@ -36,26 +40,26 @@ public class ProjetServiceImpl implements ProjetService {
 
   //@GetMapping("/projets/{Id}")
 	@Override
-	 public Optional<Projet> findById(@PathVariable Integer Id_projet) {
+	 public Optional<Projet> findById(@PathVariable Integer Id) {
 		 System.out.println("Get project par id...");
 		// Optional<Projet> prj = projetRepository.findById(id);
-		 return (Optional<Projet>) projetRepository.findById(Id_projet);
+		 return (Optional<Projet>) projetRepository.findById(Id);
 	  
 	 
 	 }
 
 	
-	  @Override 
-	  public List<Projet> getProjByStade(String Code_Stade ) {
-		  // TODOAuto-generated method stub return (List<Projet>)
-	  return (List<Projet>)projetRepository.getProjByStade(Code_Stade); 
-	  }
-
-	  @Override 
-    	public List<Projet> getProjByStructure(Integer Id_Structure) {
-		
-		return  projetRepository.getProjByStructureid(Id_Structure);
-		}
+//	  @Override 
+//	  public List<Projet> getProjByStade(String Code_Stade ) {
+//		  // TODOAuto-generated method stub return (List<Projet>)
+//	  return (List<Projet>)projetRepository.getProjByStade(Code_Stade); 
+//	  }
+//
+//	  @Override 
+//    	public List<Projet> getProjByStructure(Integer Id_Structure) {
+//		
+//		return  projetRepository.getProjByStructureid(Id_Structure);
+//		}
 
 
 	  @Override
@@ -63,6 +67,26 @@ public class ProjetServiceImpl implements ProjetService {
 		  // TODO Auto-generated method stub 
 		  return(List<Projet>)projetRepository.getProjBydifficulte(Flag_En_Difficulte);
 		  }
+
+	@Override
+	public List<Projet> getProjByStructure(Structure structure) {
+		// TODO Auto-generated method stub
+		return (List<Projet>)projetRepository.getProjByStructure(structure);
+	}
+
+	@Override
+	public List<Projet> getProjByStade(STADE_PROJET stadeprojet) {
+		// TODO Auto-generated method stub
+	
+		
+		return (List<Projet>)projetRepository.getProjByStade(stadeprojet);
+		}
+
+	@Override
+	public List<Projet> getProjByTypeProj(Type_Projet typeprojet) {
+		// TODO Auto-generated method stub
+		return (List<Projet>)projetRepository.getProjByTypeProjet(typeprojet);
+	}
 	 
 
 

@@ -27,9 +27,9 @@ public class ActiviteServiceImpl implements ActiviteService {
 	}
 
 	@Override
-	public Optional<Activite> findByCode_Activite(String Code_Activite) {
+	public List<Activite> findByCode_Activite(Activite activite ) {
 		// TODO Auto-generated method stub
-		return (Optional<Activite>)activiteRepository.findById(Code_Activite);
+		return (List<Activite>)activiteRepository.findByCode_Activite(activite);
 	}
 
 }

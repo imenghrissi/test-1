@@ -28,7 +28,7 @@ public class STADE_PROJET {
 	private Integer Flag_En_Difficulte;
 	private String Des_Ar;
 
-    @OneToMany(mappedBy = "CodeStade", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "stadeprojet", cascade = CascadeType.ALL)
     private Collection<Projet> projects;
 	
 	

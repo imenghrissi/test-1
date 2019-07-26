@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.entities.Projet;
-
-
+import com.test.entities.STADE_PROJET;
+import com.test.entities.Structure;
 import com.test.service.ProjetService;
 import com.test.controlleur.ProjetControlleur;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/")
 
 @RestController
@@ -50,18 +50,18 @@ public class ProjetControlleur {
 	}
 	@RequestMapping(value="/Proj/{Id_projet}",method = RequestMethod.GET)
 	//@RequestMapping(value="/Project/{id}", method=RequestMethod.GET)
-	public Optional<Projet> findById(Integer Id_projet) {
-		return projetService.findById(Id_projet);
+	public Optional<Projet> findById(Integer Id) {
+		return projetService.findById(Id);
 	}
 	
-	@RequestMapping(value ="/projbystructure/{Id_Structure}", method=RequestMethod.GET)
-	public List<Projet> getProjByStructureid(Integer Id_Structure) {
-		return projetService.getProjByStructure(Id_Structure);
+	@RequestMapping(value ="/projbystructure/{structure}", method=RequestMethod.GET)
+	public List<Projet> getProjByStructureid(Structure structure) {
+		return projetService.getProjByStructure(structure);
 	}
 	
-	@RequestMapping(value ="/projbystade/{CodeStade}", method=RequestMethod.GET)
-	public List<Projet> getProjByStade(String CodeStade) {
-		return (List<Projet>)projetService.getProjByStade(CodeStade);
+	@RequestMapping(value ="/projbystade/{stadeprojet}", method=RequestMethod.GET)
+	public List<Projet> getProjByStade(STADE_PROJET stadeprojet) {
+		return (List<Projet>)projetService.getProjByStade(stadeprojet);
 	}
 
 	

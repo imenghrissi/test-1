@@ -8,6 +8,6 @@ import com.test.entities.Activite;
 public interface ActiviteService {
 	public Activite AddActivite(Activite activite);
 	public List<Activite>  getAllActivite();
-	public Optional<Activite>findByCode_Activite(String Code_Activite);
+	public List<Activite>findByCode_Activite(Activite activite);
 
 }

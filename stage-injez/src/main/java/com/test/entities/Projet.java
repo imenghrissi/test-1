@@ -1,8 +1,11 @@
 package com.test.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -36,12 +41,12 @@ public class Projet implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Id_projet", updatable = false, nullable = false)
-	private Integer Id_projet;
+	@Column(name = "Id", updatable = false, nullable = false)
+	private Integer Id;
     
 	private String Reference_Projet ;
     //private String CODE_STADE;
-    private String Code_Type_Prj;
+    //private String Code_Type_Prj;
     private String Intitule_Prj;
     private String Desc_Prj;
     
@@ -205,36 +210,43 @@ public class Projet implements Serializable {
 	/*******************Structure**********************************************/
 	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name="Id_Structure")
-	    private Structure Id_Structure;
-	
-	 
+	    private Structure structure;
 	 @JsonIgnore
-		public Structure getId_Structure() {
-		return Id_Structure;
-	}
+	 public Structure getStructure() {
+			return structure;
+		}
 
-	public void setId_Structure(Structure id_Structure) {
-		Id_Structure = id_Structure;
-	}
+		public void setStructure(Structure structure) {
+			this.structure = structure;
+		}
+		/*******************typeProjet**********************************************/
+		 @ManyToOne(fetch = FetchType.LAZY)
+		 @JoinColumn(name="Code_Type_Prj")
+		    private Type_Projet typeprojet;
+		 @JsonIgnore
+		 
 
+	
+	
 		/*******************stadeprojet**********************************************/
 	 @ManyToOne(fetch = FetchType.LAZY)
 	 @JoinColumn(name="CodeStade")
-	   private STADE_PROJET CodeStade;
+	   private STADE_PROJET stadeprojet;
 
-	 @JsonIgnore
-	public STADE_PROJET getCodeStade() {
-			return CodeStade;
-		}
+	
+	@JsonIgnore
+	public STADE_PROJET getStadeprojet() {
+		return stadeprojet;
+	}
 
-		public void setCodeStade(STADE_PROJET codeStade) {
-			CodeStade = codeStade;
-		}
+	public void setStadeprojet(STADE_PROJET stadeprojet) {
+		this.stadeprojet = stadeprojet;
+	}
 		
 	/*****CONSTRAINT "FK_PROJET___PJT_ACTIVITE" FOREIGN KEY ("Id_projet")*////////
 		@LazyCollection(LazyCollectionOption.FALSE)
-		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
-	   private Collection<Activite> activite;
+		@OneToMany(mappedBy="Id",cascade = CascadeType.ALL)
+	  private Collection<Activite> activite;
 		
 		@JsonIgnore
 		public Collection<Activite> getActivite() {
@@ -263,8 +275,8 @@ public class Projet implements Serializable {
  * 
  */
 		@LazyCollection(LazyCollectionOption.FALSE)
-		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
-		   private Collection<FE> fe;
+		@OneToMany(mappedBy="Id",cascade = CascadeType.ALL)
+		  private Collection<FE> fe;
 		
 		@JsonIgnore	
 		public Collection<FE> getFe() {
@@ -275,14 +287,17 @@ public class Projet implements Serializable {
 			this.fe = fe;
 		}
 
-		/*		
- * 
- * 
- */
+				
+ /* 
+  * 
+  * 
+  *  */
 		@LazyCollection(LazyCollectionOption.FALSE)
-		@OneToMany(mappedBy="Id_project",cascade = CascadeType.ALL)
+		@OneToMany(mappedBy="Id",cascade = CascadeType.ALL)
 		   private Collection<ZONE> zone;
 		
+	
+
 		@JsonIgnore
 	public Collection<ZONE> getZone() {
 			return zone;
@@ -299,7 +314,7 @@ public class Projet implements Serializable {
 	}
        
 		/**
-		 * @param id_projet
+		 * @param id
 		 * @param reference_Projet
 		 * @param code_Type_Prj
 		 * @param intitule_Prj
@@ -377,7 +392,7 @@ public class Projet implements Serializable {
 		 * @param f_Delete
 		 * @param flag_En_Difficulte
 		 */
-		public Projet(Integer id_projet, String reference_Projet, String code_Type_Prj, String intitule_Prj,
+		public Projet(Integer id,String reference_Projet, String intitule_Prj,
 				String desc_Prj, Date date_Deb, Date date_Fin, Date date_Fin_A, String ref_Bud, String maitre_Oeuvre,
 				String maitre_Ouvrage, Integer tri, Integer unite_Po_Phy, Integer unite_Po_Fin, Integer unite_S_Fin,
 				Integer unite_S_Phy, Integer unite_Pm, String obs, Integer niv_Zone, Integer flag_Planif_Phy,
@@ -396,9 +411,9 @@ public class Projet implements Serializable {
 				Integer id_Str_Secteur, String obs_Ar, Integer flag_Decision, Integer f_Delete,
 				Integer flag_En_Difficulte) {
 			super();
-			Id_projet = id_projet;
+			Id = id;
 			Reference_Projet = reference_Projet;
-			Code_Type_Prj = code_Type_Prj;
+			
 			Intitule_Prj = intitule_Prj;
 			Desc_Prj = desc_Prj;
 			Date_Deb = date_Deb;
@@ -479,12 +494,15 @@ public class Projet implements Serializable {
 
 
 
-		public Integer getId_projet() {
-			return Id_projet;
+		
+
+
+		public Integer getId() {
+			return Id;
 		}
 
-		public void setId_projet(Integer id_projet) {
-			Id_projet = id_projet;
+		public void setId(Integer id) {
+			Id = id;
 		}
 
 		public String getReference_Projet() {
@@ -495,13 +513,6 @@ public class Projet implements Serializable {
 			Reference_Projet = reference_Projet;
 		}
 
-		public String getCode_Type_Prj() {
-			return Code_Type_Prj;
-		}
-
-		public void setCode_Type_Prj(String code_Type_Prj) {
-			Code_Type_Prj = code_Type_Prj;
-		}
 
 		public String getIntitule_Prj() {
 			return Intitule_Prj;
@@ -1095,10 +1106,10 @@ public class Projet implements Serializable {
 			Flag_En_Difficulte = flag_En_Difficulte;
 		}
 	
+	   // @ManyToMany(mappedBy = "projets")
+	    //private Set<Activite> acitivites = new HashSet<>();
 
-    
-  
-		
-    
+
+
 
 }

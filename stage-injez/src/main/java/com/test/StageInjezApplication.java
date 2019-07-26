@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 
 //@Configuration
-//@EnableAutoConfiguration
-
+@EnableAutoConfiguration
 @SpringBootApplication
 public class StageInjezApplication {
 	  protected SpringApplicationBuilder configure (SpringApplicationBuilder builder) {
