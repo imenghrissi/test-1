@@ -14,4 +14,5 @@ public interface BailleurRepository extends JpaRepository<Bailleur,String> {
 	@Query("select p from Bailleur p where p.Des_Bf =:Des_Bf ")
 	Optional<Structure> BailleurByIntituler(@Param("Des_Bf") String Des_Bf);
 
+
 }

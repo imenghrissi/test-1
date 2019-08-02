@@ -26,11 +26,7 @@ public class BailleurServiceImlp implements BailleurService {
 		return (List<Bailleur>)bailleurRepository.findAll();
 	}
 
-	@Override
-	public Optional<Bailleur> findBycodeBailleur(String Code_Bf) {
-		// TODO Auto-generated method stub
-		return (Optional<Bailleur>)bailleurRepository.findById(Code_Bf);
-	}
+
 
 	@Override
 	public Optional<Bailleur> BailleurByIntituler(String Des_Bf) {

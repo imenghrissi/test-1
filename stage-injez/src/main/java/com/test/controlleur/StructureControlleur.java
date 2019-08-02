@@ -35,11 +35,11 @@ public class StructureControlleur {
 
 
 	
-	@GetMapping("/structur/{Id_Structure}")
+	@RequestMapping(value="/structur/{Id_Structure}", method=RequestMethod.GET)
 	public Optional<Structure> findByStructure(Integer Id_Structure) {
 		return structureService.findByStructure(Id_Structure);
 	}
-	@GetMapping("/struct/{Des}")
+	@RequestMapping(value="/struct/{Des}", method=RequestMethod.GET)
 	public List<Structure> findbyintitul(String Des) {
 		return structureService.StructureByIntituler(Des);
 	}

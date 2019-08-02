@@ -1,10 +1,14 @@
 package com.test.entities;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 //@IdClass(Bailleur.class)
 @Entity
 public class Bailleur {
@@ -15,16 +19,19 @@ public class Bailleur {
 	public String Code_Bf ; 
 	public String Des_Bf ; 
 	public String Adresse; 
-	public String  Tel ; 
+	public String Tel ; 
 	public String Fax ; 
-	public String  Email ; 
-	public String  Adresse1 ; 
-	public String  Adresse2 ;
-	public Integer  Type_Bf ;
+	public String Email ; 
+	public String Adresse1 ; 
+	public String Adresse2 ;
+	public Integer Type_Bf ;
 	public String  Des_Ar ;
 	public String  Adresse_Ar ;
 	public String  Adresse1_Ar ;
 	
+	
+    @OneToMany(mappedBy = "bailleur", cascade = CascadeType.ALL)
+    private Collection<FE> fe;
 	public Bailleur() {
 		super();}
 	/**

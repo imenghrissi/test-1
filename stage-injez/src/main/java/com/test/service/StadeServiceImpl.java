@@ -31,4 +31,10 @@ private StadeRepository stadeRepository;
 		return (Optional<STADE_PROJET>)stadeRepository.findById(Code_Stade);
 	}
 
+	@Override
+	public Optional<STADE_PROJET> StadeByDes(String Des) {
+		// TODO Auto-generated method stub
+		return (Optional<STADE_PROJET>)stadeRepository.StadeByDes(Des);
+	}
+
 }

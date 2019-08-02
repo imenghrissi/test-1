@@ -30,9 +30,15 @@ public class ZoneServiceImpl implements ZoneService {
 
 
 	@Override
-	public Optional<ZONE> findBycodezone(String Code_Zone) {
+	public List<ZONE> findBycodezone(ZONE zone) {
 		// TODO Auto-generated method stub
-		return (Optional<ZONE>)zoneRepository.findById(Code_Zone);
+		return (List<ZONE>)zoneRepository.findBycodezone(zone);
+	}
+
+	@Override
+	public Optional<ZONE> ZONEByIntituler(String Des) {
+		// TODO Auto-generated method stub
+		return (Optional<ZONE>)zoneRepository.findById(Des);
 	}
 
 

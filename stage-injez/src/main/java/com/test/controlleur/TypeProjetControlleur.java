@@ -40,7 +40,7 @@ public class TypeProjetControlleur {
 		return typeprojetService.findBycodeTypeProjet(Code_Type_Prj);
 	}
 	
-	@GetMapping("/typeintiltuler/{Des}")
+	@RequestMapping(value="/typeintiltuler/{Des}", method=RequestMethod.GET)
 	public Optional<Type_Projet> findbyintitul(String Des) {
 		return (Optional<Type_Projet>)typeprojetService.TypeProjetByIntituler(Des);
 	}

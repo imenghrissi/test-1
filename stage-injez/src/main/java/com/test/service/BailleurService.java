@@ -12,7 +12,7 @@ import com.test.entities.ZONE;
 public interface BailleurService {
 	public Bailleur AddBailleur(Bailleur bailleur);
 	public List<Bailleur>  getAllBailleur();
-	public Optional<Bailleur>findBycodeBailleur(String Code_Bf);
+	
 	public Optional<Bailleur> BailleurByIntituler(String Des_Bf);
 
 

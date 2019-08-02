@@ -6,16 +6,20 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.entities.Activite;
+import com.test.entities.FE;
 import com.test.entities.Projet;
 import com.test.entities.STADE_PROJET;
 import com.test.entities.Structure;
+import com.test.entities.Type_Projet;
+import com.test.entities.ZONE;
 import com.test.service.ProjetService;
 import com.test.controlleur.ProjetControlleur;
 
@@ -65,10 +69,34 @@ public class ProjetControlleur {
 	}
 
 	
-	@RequestMapping("/projetdiffic/{}")
+	@RequestMapping(value="/projetdiffic/{}", method=RequestMethod.GET)
 	  public List<Projet>getProjBydifficulte(Integer Flag_En_Difficulte) {
 		  return projetService.getProjBydifficulte(Flag_En_Difficulte); 
 		  }
-	 
+	
+	@RequestMapping(value="/prj/{Desc_Prj}", method=RequestMethod.GET)
+	public Optional<Projet> ProjetByDes(String Desc_Prj) {
+		return (Optional<Projet>)projetService.ProjetByDes(Desc_Prj);
+	}
+	
+	@RequestMapping(value ="/projbytypprj/{typeprojet}", method=RequestMethod.GET)
+	public List<Projet> getProjByTypeProj(Type_Projet typeprojet) {
+		return (List<Projet>)projetService.getProjByTypeProj(typeprojet);
+	}
+	
+	@RequestMapping(value ="/projbyfe/{fe}", method=RequestMethod.GET)
+	public List<Projet> getProjBycodefe(FE fe) {
+		return (List<Projet>)projetService.getProjBycodefe(fe);
+	}
+	
+	@RequestMapping(value ="/projbyzone/{zone}", method=RequestMethod.GET)
+	public List<Projet> getProjBycodezone(ZONE zone) {
+		return (List<Projet>)projetService.getProjBycodezone(zone);
+	}
+	
+	@RequestMapping(value ="/projbyacti/{activite}", method=RequestMethod.GET)
+	public List<Projet> getProjByActivite(Activite activite) {
+		return (List<Projet>)projetService.getProjByActivite(activite);
+	}
 	
 }

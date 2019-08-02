@@ -34,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Projet implements Serializable {
-	/**
+	/*
+	 * 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -49,9 +50,7 @@ public class Projet implements Serializable {
     //private String Code_Type_Prj;
     private String Intitule_Prj;
     private String Desc_Prj;
-    
-    
-	private Date Date_Deb;
+   	private Date Date_Deb;
 	private Date Date_Fin ;
 	private Date Date_Fin_A;
 	

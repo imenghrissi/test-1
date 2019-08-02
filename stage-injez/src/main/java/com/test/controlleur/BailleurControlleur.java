@@ -36,13 +36,9 @@ public class BailleurControlleur {
 		}
 
 	
-	@RequestMapping(value="/bailleur/{Code_Bf}",method = RequestMethod.GET)
-	//@RequestMapping(value="/Project/{id}", method=RequestMethod.GET)
-	public Optional<Bailleur> findBycodebailleur(String Code_Bf) {
-		return bailleurService.findBycodeBailleur(Code_Bf);
-	}
+
 	
-	@GetMapping("/bailleurintiltuler/{Des_Bf}")
+	@RequestMapping(value="/bailleurintiltuler/{Des_Bf}", method=RequestMethod.GET)
 	public Optional<Bailleur> findbyintitul(String Des_Bf) {
 		return (Optional<Bailleur>)bailleurService.BailleurByIntituler(Des_Bf);
 	}
