@@ -16,8 +16,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Structure {
+	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Id_Structure; 
     private String Code; 
     private String Des; 
@@ -59,8 +60,11 @@ public Collection<Projet> getProjet() {
 		this.activite = activite;
 	}
 
-
-
+/*
+ * utilisateur,structure
+ */
+	 @OneToMany(mappedBy = "structure", cascade = CascadeType.ALL)
+	    private Collection<Utilisateur> utilisateur;
 	public Structure() {
 		super();
 	}

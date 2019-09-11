@@ -40,9 +40,10 @@ public class Projet implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", updatable = false, nullable = false)
+	@Id
 	private Integer Id;
     
 	private String Reference_Projet ;
@@ -224,7 +225,14 @@ public class Projet implements Serializable {
 		    private Type_Projet typeprojet;
 		 @JsonIgnore
 		 
+		 
+			public Type_Projet getTypeprojet() {
+				return typeprojet;
+			}
 
+			public void setTypeprojet(Type_Projet typeprojet) {
+				this.typeprojet = typeprojet;
+			}
 	
 	
 		/*******************stadeprojet**********************************************/
@@ -233,6 +241,7 @@ public class Projet implements Serializable {
 	   private STADE_PROJET stadeprojet;
 
 	
+
 	@JsonIgnore
 	public STADE_PROJET getStadeprojet() {
 		return stadeprojet;
@@ -306,6 +315,21 @@ public class Projet implements Serializable {
 			this.zone = zone;
 		}
 
+		
+/*******CONSTRAINT "FK_PROJET_PROFIL_PROJET_1" FOREIGN KEY ("Id_PROJET")REFERENCES "PROJET" ("Id_PROJET") ENABLE,*/
+
+		@LazyCollection(LazyCollectionOption.FALSE)
+		@OneToMany(mappedBy="Id",cascade = CascadeType.ALL)
+	  private Collection<Profil_Projet> profilprojet;
+	  
+	  
+/*******CONSTRAINT "fk Projet,profilprojet" FOREIGN KEY ("code Reference_Projet")REFERENCES "Projet" ("Reference_Projet") ENABLE,*/
+
+
+		@OneToMany(mappedBy="projet",cascade = CascadeType.ALL)
+	  private Collection<Profil_Projet> profilproject;
+
+	  
 	//constructor
     public Projet() {
 		super();

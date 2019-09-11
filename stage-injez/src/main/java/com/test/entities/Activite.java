@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 //import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,9 +23,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Indexed;
 
@@ -32,14 +37,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @IdClass(Activite.class)
 @Entity
-@Table(indexes = { @Index(name = "ACTIVITE_INDEX1", columnList = "Id_projet")})
+//@Table(indexes = { @Index(name = "ACTIVITE_INDEX1", columnList = "Id_projet")})
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
 public class Activite implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,7 +58,7 @@ public class Activite implements Serializable{
 	  public String Act_Code_Activite;  
 	  public String Des;
 	  public Integer Cout_FE;
-	  public Integer Cout_Autre;
+	  public Integer Cout_Autre;	
 	  public Integer Flag_Niveau; 
 	  public String Obs; 
 	  public Integer Nbr_Fils; 
@@ -106,9 +108,10 @@ public class Activite implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Id_project"/*,referencedColumnName="Id_projet"*/)
     private Projet Id;
+	
 	public Projet getId() {
 	return Id;
-}
+	}
 
 
 public void setId(Projet id) {
@@ -171,7 +174,12 @@ public void setId(Projet id) {
 		  CodeStade = codeStade; 
 		  }
 	 
+/*******CONSTRAINT "FK_activite_PROFIL_PROJET_1" FOREIGN KEY ("code activite")REFERENCES "activite" ("code_activite") ENABLE,*/
 
+	 
+		//@LazyCollection(LazyCollectionOption.FALSE)
+		//@OneToMany(mappedBy="activite",cascade = CascadeType.ALL)
+	 //private Collection<Profil_Projet> profilprojet;
 
 		public Activite() {
 		

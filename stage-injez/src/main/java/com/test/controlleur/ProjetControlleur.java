@@ -1,12 +1,14 @@
 package com.test.controlleur;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,15 +21,23 @@ import com.test.entities.Projet;
 import com.test.entities.STADE_PROJET;
 import com.test.entities.Structure;
 import com.test.entities.Type_Projet;
+import com.test.entities.User;
 import com.test.entities.ZONE;
 import com.test.service.ProjetService;
 import com.test.controlleur.ProjetControlleur;
+import com.test.dao.ProjetRepository;
+import com.test.dao.UserRepository;
 
-@CrossOrigin(origins = "*")
-@RequestMapping("/")
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/houssem")
 public class ProjetControlleur {
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	ProjetRepository projetRepository;
+	
 
 	@Autowired
     private ProjetService projetService;
@@ -52,7 +62,7 @@ public class ProjetControlleur {
 	public Projet modifProjet(Projet projet) {
 		return projetService.ModifProjet(projet);
 	}
-	@RequestMapping(value="/Proj/{Id_projet}",method = RequestMethod.GET)
+	@RequestMapping(value="/proj/{Id_projet}",method = RequestMethod.GET)
 	//@RequestMapping(value="/Project/{id}", method=RequestMethod.GET)
 	public Optional<Projet> findById(Integer Id) {
 		return projetService.findById(Id);
@@ -99,4 +109,33 @@ public class ProjetControlleur {
 		return (List<Projet>)projetService.getProjByActivite(activite);
 	}
 	
+	
+	 // *************recuperer la liste tous les utilisateur admin *******************
+/*
+	 @GetMapping("/users")
+	 public List<User> getAllUsers() {
+	 System.out.println("Get all Users...");
+	 
+	 List<User> users = new ArrayList<>();
+	 userRepository.findAll().forEach(users::add);
+	 
+	 return users;
+	 }
+	 */
+	 
+	 
+	 //get all liste de projet
+	 
+	 @GetMapping("/listproje")
+	 public List<Projet> getAllProjets() {
+	 System.out.println("Get all Users...");
+	 
+	 List<Projet> listproje = new ArrayList<>();
+	 projetRepository.findAll().forEach(listproje::add);
+	 
+	 return listproje;
+	 }
+	 
+	 
+
 }

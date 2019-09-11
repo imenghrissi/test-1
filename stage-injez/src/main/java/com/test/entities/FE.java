@@ -24,14 +24,16 @@ public class FE implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Id_projet", updatable = false, nullable = false)
+	@Id
 	public Integer Id_projet ; 
 	
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Code_Fe", updatable = false, nullable = false)
+	@Id
 	public String Code_Fe;
 	
 	//public String Code_Bf; 

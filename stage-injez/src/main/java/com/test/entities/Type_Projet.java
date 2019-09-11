@@ -12,10 +12,10 @@ import javax.persistence.OneToMany;
 //@IdClass(Type_Projet.class)
 @Entity
 public class Type_Projet {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Code_Type_Prj", updatable = false, nullable = false)
-
+	@Id
 	public String Code_Type_Prj;
 	public String  Des;
 	public String Des_Ar;

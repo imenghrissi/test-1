@@ -16,7 +16,7 @@ import com.test.entities.FE;
 import com.test.entities.STADE_PROJET;
 import com.test.service.ActiviteService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/")
 
 @RestController

@@ -16,7 +16,7 @@ import com.test.entities.Structure;
 import com.test.service.StructureService;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/")
+@RequestMapping("/houssem")
 
 @Controller
 @ResponseBody

@@ -18,10 +18,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class STADE_PROJET {
 	//@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Code_Stade", updatable = false, nullable = false)
 	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Code_Stade", updatable = false, nullable = false)
+	@Id
 	private String Code_Stade;
 	private String Des;
 	private Integer Flag_En_Continuation;
